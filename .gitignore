@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/LearnerAssistant/FileContentIndex
+/DataAccessLayer/bin/Debug/net8.0
+/DataAccessLayer/obj
+/LearnerAssistant/bin/Debug/net8.0
+/LearnerAssistant/obj
