@@ -16,6 +16,7 @@ public class ApplicationDbContext(
   public DbSet<Forum> Forums { get; set; }
   public DbSet<Comment> Comments { get; set; }
   public DbSet<Term> Terms { get; set; }
+  public DbSet<Year> Years { get; set; }
   public DbSet<Chapter> Chapters { get; set; }
   public DbSet<PastPaper> PastPapers { get; set; }
   public DbSet<PastMemorandum> PastMemorandums { get;set; }
@@ -24,6 +25,12 @@ public class ApplicationDbContext(
   public DbSet<AdditionalTextBook> AdditionalTextBooks { get; set; }
   public DbSet<UserReaction> UserReactions { get; set; }
   public DbSet<VideoTutorial> VideoTutorials { get; set; }
+  public DbSet<TermYear> TermYears { get; set; }
+  public DbSet<QuestionType> QuestionTypes { get; set; }
+  public DbSet<Question> Questions { get; set; }
+  public DbSet<Answer> Answers { get; set; }
+  public DbSet<MultipleChoiceAnswer> MultipleChoices { get; set; }
+  public DbSet<TrueFalseAnswer> TrueFalseAnswers { get; set; }
 
   protected override void OnModelCreating(
       ModelBuilder modelBuilder)

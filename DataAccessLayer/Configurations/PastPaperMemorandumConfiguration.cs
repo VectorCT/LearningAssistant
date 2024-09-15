@@ -14,12 +14,12 @@ public class PastPaperMemorandumConfiguration : IEntityTypeConfiguration<PastPap
         .HasOne(ppm => ppm.PastPaper)
         .WithMany(p => p.PastPaperMemorandums)
         .HasForeignKey(ppm => ppm.PastPaperId)
-        .OnDelete(DeleteBehavior.Cascade);
+        .OnDelete(DeleteBehavior.Restrict);
 
     builder
         .HasOne(ppm => ppm.PastMemorandum)
         .WithMany(m => m.PastPaperMemorandums)
         .HasForeignKey(ppm => ppm.PastMemorandumId)
-        .OnDelete(DeleteBehavior.Cascade);
+        .OnDelete(DeleteBehavior.NoAction);
   }
 }

@@ -10,14 +10,19 @@ public class TermConfiguration : IEntityTypeConfiguration<Term>
   {
     builder.HasKey(t => t.Id);
 
-    builder
-        .Property(t => t.Name)
-        .HasMaxLength(100)
-        .IsRequired();
+    builder.Property(t => t.Name)
+           .HasMaxLength(100)
+           .IsRequired();
 
+    builder.Property(t => t.Duration)
+           .IsRequired();
+
+    // Defining foreign key relationship with Year
     builder
-        .Property(t => t.Duration)
-        .IsRequired();
+            .HasMany(t => t.TermYears)
+            .WithOne(ty => ty.Term)
+            .HasForeignKey(ty => ty.TermId)
+            .OnDelete(DeleteBehavior.Cascade);
 
     // Seed Data (Optional)
     builder.HasData(

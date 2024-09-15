@@ -9,7 +9,7 @@ namespace DataAccessLayer.Models
   public class AdditionalTextBook
   {
     public Guid Id { get; set; }
-    public int SubjectId { get; set; }
+    public Guid SubjectId { get; set; }
     public Subject? Subject { get; set; }
     public string BookTitle { get; set; } = string.Empty;
     public string BookFilePath { get; set; } = string.Empty;
