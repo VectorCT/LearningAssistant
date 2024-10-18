@@ -17,7 +17,6 @@ namespace DataAccessLayer.Models
     public List<TextbookFile> TextbookFiles { get; set; } = [];
     public List<GradeSubject> GradeSubjects { get; set; } = [];
     public List<PastPaper> PastPapers { get; set; } = [];
-    public List<PastMemorandum> PastMemorandums { get; set; } = [];
     public List<Forum> Forums { get; set; } = [];
   }
 }

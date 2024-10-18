@@ -37,11 +37,6 @@ namespace DataAccessLayer.Configurations
           .HasMany(s => s.PastPapers)
           .WithOne(p => p.Subject)
           .HasForeignKey(p => p.SubjectId);
-
-      builder
-          .HasMany(s => s.PastMemorandums)
-          .WithOne(p => p.Subject)
-          .HasForeignKey(p => p.SubjectId);
       builder
           .HasMany(s => s.Forums)
           .WithOne(p => p.Subject)

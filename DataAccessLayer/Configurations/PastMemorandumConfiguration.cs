@@ -17,10 +17,5 @@ public class PastMemorandumConfiguration : IEntityTypeConfiguration<PastMemorand
         .Property(pm => pm.FilePath)
         .HasMaxLength(255)
         .IsRequired();
-
-    builder
-        .HasOne(pm => pm.Subject)
-        .WithMany(s => s.PastMemorandums)
-        .HasForeignKey(pm => pm.SubjectId);
   }
 }

@@ -2,7 +2,6 @@
 using DataAccessLayer.Models;
 using LearnerAssistant.Extensions;
 using LearnerAssistant.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace LearnerAssistant.Services.Implementation;
 

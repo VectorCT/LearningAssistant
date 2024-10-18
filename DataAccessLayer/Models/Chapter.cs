@@ -14,6 +14,7 @@ namespace DataAccessLayer.Models
     public Guid TermId { get; set; }
     public Term Term { get; set; }
     public int ChapterNumber { get; set; }
+    public string Content { get; set; }
     public string ChapterTitle { get; set; }
     public ICollection<Question> Questions { get; set; } = [];
   }

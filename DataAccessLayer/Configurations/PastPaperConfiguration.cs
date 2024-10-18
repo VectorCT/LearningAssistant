@@ -22,5 +22,9 @@ public class PastPaperConfiguration : IEntityTypeConfiguration<PastPaper>
         .HasOne(pp => pp.Subject)
         .WithMany(s => s.PastPapers)
         .HasForeignKey(pp => pp.SubjectId);
+    builder
+        .HasOne(c => c.Year)
+        .WithMany(t => t.PastPapers)
+        .HasForeignKey(c => c.YearId);
   }
 }
