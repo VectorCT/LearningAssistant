@@ -15,7 +15,7 @@ public class PastMemorandumConfiguration : IEntityTypeConfiguration<PastMemorand
 
     builder
         .Property(pm => pm.FilePath)
-        .HasMaxLength(255)
+        .HasMaxLength(500)
         .IsRequired();
   }
 }

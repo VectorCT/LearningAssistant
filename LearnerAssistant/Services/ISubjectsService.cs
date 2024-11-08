@@ -6,5 +6,5 @@ namespace LearnerAssistant.Services;
 public interface ISubjectsService
 {
   Task<IReadOnlyList<SubjectDto>> GetSubjectsAsync();
-  Task<Subject> CreateSubjectAsync(string name, string prescribedTextbook);
+  Task<Subject> CreateSubjectAsync(SubjectDto model);
 }

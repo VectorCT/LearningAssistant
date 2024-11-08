@@ -10,13 +10,16 @@ public class SubjectsService(
 {
   private readonly ApplicationDbContext _context = context;
 
-  public async Task<Subject> CreateSubjectAsync(string name, string prescribedTextbook)
+  public async Task<Subject> CreateSubjectAsync(SubjectDto model)
   {
     var subject = new Subject()
     {
       Id = Guid.NewGuid(),
-      Name = name,
-      PrescribedTextBook = prescribedTextbook
+      Name = model.Name,
+      PrescribedTextBook = model.PrescribedTextBook,
+      SubjectDescription = model.Description,
+      SubjectImageUrl = model.SubjectImageUrl,
+      PrescribedTextBookFileUrl = model.PrescribedTextbookFileUrl,
     };
 
     await _context.AddAsync(subject);
@@ -25,6 +28,7 @@ public class SubjectsService(
     return subject;
 
   }
+/// <inheritdoc/>
 
   public async Task<IReadOnlyList<SubjectDto>> GetSubjectsAsync()
   => await _context.Subjects
@@ -33,5 +37,6 @@ public class SubjectsService(
         Id = s.Id,
         Name = s.Name,
         PrescribedTextBook = s.PrescribedTextBook,
+        Description = s.SubjectDescription,
       }).ToReadOnlyListAsync();
 }

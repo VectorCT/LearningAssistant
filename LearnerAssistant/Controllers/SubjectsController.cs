@@ -1,4 +1,5 @@
-﻿using LearnerAssistant.Services;
+﻿using LearnerAssistant.Models;
+using LearnerAssistant.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace LearnerAssistant.Controllers
       => Ok(await _subject.GetSubjectsAsync());
 
     [HttpPost]
-    public async Task<IActionResult> CreateAsync(string name, string textBook)
-      => Ok(await _subject.CreateSubjectAsync(name, textBook));
+    public async Task<IActionResult> CreateAsync(SubjectDto model)
+      => Ok(await _subject.CreateSubjectAsync(model));
   }
 }

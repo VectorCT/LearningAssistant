@@ -11,6 +11,9 @@ namespace DataAccessLayer.Models
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string PrescribedTextBook { get; set; } = string.Empty;
+    public string PrescribedTextBookFileUrl { get; set; } = string.Empty;
+    public string SubjectImageUrl {  get; set; } = string.Empty;
+    public string SubjectDescription { get; set; } = string.Empty;
     public List<AdditionalTextBook> AdditionalTextBooks { get; set; } = [];
     public List<Chapter> Chapters { get; set; } = [];
     public List<VideoTutorial> VideoTutorials { get; set; } = [];

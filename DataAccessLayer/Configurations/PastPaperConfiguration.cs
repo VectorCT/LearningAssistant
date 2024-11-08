@@ -15,7 +15,7 @@ public class PastPaperConfiguration : IEntityTypeConfiguration<PastPaper>
 
     builder
         .Property(pp => pp.FilePath)
-        .HasMaxLength(255)
+        .HasMaxLength(500)
         .IsRequired();
 
     builder
