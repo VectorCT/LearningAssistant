@@ -17,5 +17,9 @@ public class PastMemorandumConfiguration : IEntityTypeConfiguration<PastMemorand
         .Property(pm => pm.FilePath)
         .HasMaxLength(500)
         .IsRequired();
+
+    builder
+        .HasOne(c => c.PastPaper)
+        .WithOne(t => t.PastMemorandum);
   }
 }

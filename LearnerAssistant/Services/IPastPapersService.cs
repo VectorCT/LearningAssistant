@@ -1,6 +1,5 @@
 ﻿using DataAccessLayer.Models;
 using LearnerAssistant.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace LearnerAssistant.Services;
 

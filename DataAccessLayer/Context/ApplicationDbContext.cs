@@ -12,6 +12,7 @@ public class ApplicationDbContext(
 {
   public DbSet<Grade> Grades { get; set; }
   public DbSet<Subject> Subjects { get; set; }
+  public DbSet<SubjectYear> SubjectYears { get; set; }
   public DbSet<GradeSubject> GradeSubjects { get; set; }
   public DbSet<Forum> Forums { get; set; }
   public DbSet<Comment> Comments { get; set; }

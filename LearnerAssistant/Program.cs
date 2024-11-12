@@ -24,6 +24,7 @@ builder.Services.AddScoped<ISubjectsService, SubjectsService>();
 builder.Services.AddScoped<IGradesService, GradesService>();
 builder.Services.AddScoped<IGradeSubjectsService, GradeSubjectsService>();
 builder.Services.AddScoped<IPastPapersService, PastPapersService>();
+builder.Services.AddScoped<IPastMemorandumService, PastMemorandumService>();
 builder.Services.AddDbContext<ApplicationDbContext>(
     options =>
         options.UseSqlServer(

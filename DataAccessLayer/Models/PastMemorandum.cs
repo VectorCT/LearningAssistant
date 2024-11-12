@@ -7,6 +7,8 @@ namespace DataAccessLayer.Models
     public string FileName { get; set; } = string.Empty;
     public string FilePath { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }
+    public Guid PastPaperId { get; set; }
+    public PastPaper PastPaper { get; set; }
     public List<PastPaperMemorandum> PastPaperMemorandums { get; set; } = [];
   }
 }

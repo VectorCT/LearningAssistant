@@ -11,12 +11,6 @@ public class PastPaperMemorandumConfiguration : IEntityTypeConfiguration<PastPap
     builder.HasKey(ppm => ppm.Id);
 
     builder
-        .HasOne(ppm => ppm.PastPaper)
-        .WithMany(p => p.PastPaperMemorandums)
-        .HasForeignKey(ppm => ppm.PastPaperId)
-        .OnDelete(DeleteBehavior.Restrict);
-
-    builder
         .HasOne(ppm => ppm.PastMemorandum)
         .WithMany(m => m.PastPaperMemorandums)
         .HasForeignKey(ppm => ppm.PastMemorandumId)

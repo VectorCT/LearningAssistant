@@ -10,5 +10,5 @@ public class PastPaper
   public string FileName { get; set; } = string.Empty;
   public string FilePath { get; set; } = string.Empty;
   public DateTime CreatedAt { get; set; }
-  public List<PastPaperMemorandum> PastPaperMemorandums { get; set; } = [];
+  public PastMemorandum? PastMemorandum { get; set; }
 }

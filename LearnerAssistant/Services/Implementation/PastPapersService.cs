@@ -6,10 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LearnerAssistant.Services.Implementation;
 
-public class PastPapersService(
-  ApplicationDbContext context) : IPastPapersService
+public class PastPapersService
+  (
+    ApplicationDbContext context,
+    IPastMemorandumService pastMemorandumService
+  ) : IPastPapersService
 {
   private readonly ApplicationDbContext _context = context;
+  private readonly IPastMemorandumService _memorandumService = pastMemorandumService;
   private readonly string _basePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", "PastPapers");
 /// <inheritdoc/>
 
@@ -68,31 +72,47 @@ public class PastPapersService(
   {
     try
     {
-
-      var filePath = Path.Combine(_basePath);
-
-      if (!Directory.Exists(filePath))
-      {
-        Directory.CreateDirectory(filePath);
-      }
-      var completePath = Path.Combine(_basePath, request.File.FileName);
-      using (var stream = new FileStream(completePath, FileMode.Create))
-      {
-        await request.File.CopyToAsync(stream);
-      };
-
       var pastPaper = new PastPaper
       {
+        Id = Guid.NewGuid(),
         FileName = request.File.FileName,
-        FilePath = completePath,
+        FilePath = await GetFilePath(request.File),
         SubjectId = request.SubjectId,
+        YearId = request.YearId,
+        CreatedAt = DateTime.UtcNow
+      };
+      await _context.PastPapers.AddAsync(pastPaper);
+      await _context.SaveChangesAsync();
+
+      var pastMemo = new PastMemoDto
+      {
+        pastPaperId = pastPaper.Id,
+        FileName = request.Memorandum.FileName,
+        FilePath = await GetFilePath(request.Memorandum),
         CreatedAt = DateTime.UtcNow
       };
 
-      await _context.PastPapers.AddAsync(pastPaper);
-      await _context.SaveChangesAsync();
+      await _memorandumService.UploadPastMemo(pastMemo);
       return pastPaper;
     }
-    catch (Exception ex) { throw new Exception(ex.Message); };
+    catch (Exception ex)
+    {
+      throw new Exception(ex.Message);
+    };
+  }
+  private async Task<string> GetFilePath(IFormFile file)
+  {
+    var filePath = Path.Combine(_basePath);
+
+    if (!Directory.Exists(filePath))
+    {
+      Directory.CreateDirectory(filePath);
+    }
+    var completePath = Path.Combine(_basePath, file.FileName);
+    using (var stream = new FileStream(completePath, FileMode.Create))
+    {
+      await file.CopyToAsync(stream);
+    };
+    return completePath;
   }
 }

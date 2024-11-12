@@ -14,15 +14,24 @@ namespace LearnerAssistant.Controllers
 
     /// <inheritdoc/>
     [HttpPost("Upload")]
-    public async Task<IActionResult> UploadPastPaper(IFormFile file, [FromForm] Guid subjectId)
+    public async Task<IActionResult> UploadPastPaper(
+      IFormFile paper,
+      IFormFile pastMemo,
+      [FromForm] Guid subjectId,
+      [FromForm] Guid yearId)
     {
-      if (file == null || file.Length == 0)
-        return BadRequest("No file uploaded.");
+      if (paper == null || paper.Length == 0)
+        return BadRequest("No Past Paper uploaded.");
+
+      if (pastMemo == null || pastMemo.Length == 0)
+        return BadRequest("No Past Paper uploaded.");
 
       var pastPaper = new PastPaperDto
       {
-        File = file,
+        File = paper,
+        Memorandum = pastMemo,
         SubjectId = subjectId,
+        YearId = yearId
       };
       var result = await _pastPapers.UploadPastPaper(pastPaper);
 

@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Models;
+using System.Text.Json.Serialization;
 
 public class Year
 {
@@ -6,4 +7,6 @@ public class Year
   public int YearNumber { get; set; }
   public List<TermYear> TermYears { get; set; } = [];
   public List<PastPaper> PastPapers { get; set; } = [];
+  [JsonIgnore]
+  public List<SubjectYear> SubjectYears { get; set; } = [];
 }

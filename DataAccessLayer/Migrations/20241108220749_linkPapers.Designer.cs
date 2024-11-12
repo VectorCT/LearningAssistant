@@ -4,6 +4,7 @@ using DataAccessLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241108220749_linkPapers")]
+    partial class linkPapers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,7 +166,7 @@ namespace DataAccessLayer.Migrations
                         {
                             Id = "default-admin-id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7c8faca8-cd7d-4525-8f6c-ce22403c4cb4",
+                            ConcurrencyStamp = "d95badb3-81d6-44fb-89aa-9b55cc9881ba",
                             Email = "calvintshabalala9@gmail.com",
                             EmailConfirmed = true,
                             IsAccountDisabled = false,
@@ -171,9 +174,9 @@ namespace DataAccessLayer.Migrations
                             Name = "Admin",
                             NormalizedEmail = "CALVINTSHABALALA9@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEhFc/5tVKq19l7rOs3aCaWUqPPODq24+SM5LHaMXIcHNdyXQnRGoqQvikyFjWM9Pg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL049y8Hvqlk1eJ5Jt+FVk6Tmv2/OJJgdrhq3vSjOP71LzcKY82uoRuBHS4Fcz9YaA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b38a9389-a685-4714-98fb-35272a3663a0",
+                            SecurityStamp = "3c1077b2-198d-4e87-8a44-f6b081135a6f",
                             Surname = "User",
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -289,7 +292,7 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3732d6b3-15b8-4941-a87b-50befbef82ac"),
+                            Id = new Guid("42b49949-596b-4415-aab2-546ceb398731"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "What are common algebra problems students face?",
                             SubjectId = new Guid("3fe2283b-6751-4633-8903-2043997bbf20"),
@@ -297,7 +300,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("44a7f98a-3f54-4370-b4aa-720596fb7174"),
+                            Id = new Guid("c86131aa-ae78-4ccc-879a-9509333e01ee"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "How do we understand Newton’s Laws?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -305,7 +308,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("827fa14e-6690-4933-91a6-b54d019ccb8c"),
+                            Id = new Guid("e4d530e2-017f-4d20-beaf-c5ada90d330e"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "What are the best study guides for exam preparation?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -313,7 +316,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8b5123d6-d3a4-467b-b12a-b081f0868b75"),
+                            Id = new Guid("87749244-b61a-46d2-adeb-ef059d7c75de"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "How should I approach exam preparation effectively?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -321,7 +324,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("268ead06-5492-44e9-969e-ddd6bce1172b"),
+                            Id = new Guid("6031f48a-c711-46e4-8562-5b6687adcb34"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "What are common algebra problems students face?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -598,24 +601,6 @@ namespace DataAccessLayer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Models.SubjectYear", b =>
-                {
-                    b.Property<Guid>("YearId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SubjectId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("YearId", "SubjectId");
-
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("SubjectYears");
-                });
-
             modelBuilder.Entity("DataAccessLayer.Models.Term", b =>
                 {
                     b.Property<Guid>("Id")
@@ -638,25 +623,25 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c796a6ba-1133-4849-aae4-1e9dfd6bef61"),
+                            Id = new Guid("386f3ca0-1f3a-4b93-ad11-15fc97c12352"),
                             Duration = "Jan - Mar",
                             Name = "Term 1"
                         },
                         new
                         {
-                            Id = new Guid("69043259-47d3-4e8a-a23f-61154187976c"),
+                            Id = new Guid("ff5aa618-c5ff-4036-b301-e89d714b09d9"),
                             Duration = "Apr - Jun",
                             Name = "Term 2"
                         },
                         new
                         {
-                            Id = new Guid("98b9cca4-6df4-4b73-9532-eecb2caa7e19"),
+                            Id = new Guid("daa3d4dc-6767-4258-aecf-130f9a20c580"),
                             Duration = "Jul - Sep",
                             Name = "Term 3"
                         },
                         new
                         {
-                            Id = new Guid("366df5d5-9ed4-4b46-8400-d5f0c907844b"),
+                            Id = new Guid("46c6696d-9fdb-445b-bc69-f083731734b3"),
                             Duration = "Oct - Dec",
                             Name = "Term 4"
                         });
@@ -938,27 +923,27 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("714dc8aa-5a56-4fbb-94a0-bb808fcbb20f"),
+                            Id = new Guid("0c0048fe-76d0-4c1f-bcae-0c47010a6820"),
                             YearNumber = 2020
                         },
                         new
                         {
-                            Id = new Guid("c359d331-7f86-4041-a677-16cad9b0fee9"),
+                            Id = new Guid("31dd6771-593e-411e-adda-43295bf59c38"),
                             YearNumber = 2021
                         },
                         new
                         {
-                            Id = new Guid("c7d914ef-295a-405a-bec8-e80785d33134"),
+                            Id = new Guid("a55e8818-c6c9-45c0-a0d3-40f1b67c1f5a"),
                             YearNumber = 2022
                         },
                         new
                         {
-                            Id = new Guid("2bf34d54-2284-4d02-8552-42018e793a6d"),
+                            Id = new Guid("eddfde96-550b-4cc3-916b-8493ffb111a7"),
                             YearNumber = 2023
                         },
                         new
                         {
-                            Id = new Guid("d2a0f9da-c79a-4a81-9446-84950b060759"),
+                            Id = new Guid("2b3db392-8c6e-48e7-934e-eab4d77c6fb4"),
                             YearNumber = 2024
                         });
                 });
@@ -1169,25 +1154,6 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("QuestionType");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Models.SubjectYear", b =>
-                {
-                    b.HasOne("DataAccessLayer.Models.Subject", "Subject")
-                        .WithMany("SubjectYears")
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Year", "Year")
-                        .WithMany("SubjectYears")
-                        .HasForeignKey("YearId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Subject");
-
-                    b.Navigation("Year");
-                });
-
             modelBuilder.Entity("DataAccessLayer.Models.TermYear", b =>
                 {
                     b.HasOne("DataAccessLayer.Models.Term", "Term")
@@ -1360,8 +1326,6 @@ namespace DataAccessLayer.Migrations
 
                     b.Navigation("PastPapers");
 
-                    b.Navigation("SubjectYears");
-
                     b.Navigation("TextbookFiles");
 
                     b.Navigation("VideoTutorials");
@@ -1377,8 +1341,6 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("Year", b =>
                 {
                     b.Navigation("PastPapers");
-
-                    b.Navigation("SubjectYears");
 
                     b.Navigation("TermYears");
                 });
