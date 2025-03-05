@@ -16,6 +16,19 @@ namespace LearnerAssistant.Controllers
     public async Task<IActionResult> Get()
       => Ok(await _subject.GetSubjectsAsync());
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetByIdAsync(Guid id)
+      => Ok(await _subject.GetSubjectByIdAsync(id));
+
+    [HttpGet()]
+    [Route("Grade")]
+    public async Task<IActionResult> GetByGradeAsync(Guid gradeId)
+      => Ok(await _subject.GetSubjectsByGradeAsync(gradeId));
+
+    [HttpGet("Year")]
+    public async Task<IActionResult> GetByYearAsync(Guid yearId)
+      => Ok(await _subject.GetSubjectsByYearAsync(yearId));
+
     [HttpPost]
     public async Task<IActionResult> CreateAsync(SubjectDto model)
       => Ok(await _subject.CreateSubjectAsync(model));

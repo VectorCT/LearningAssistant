@@ -4,6 +4,7 @@ using DataAccessLayer.Models;
 using LearnerAssistant.Extensions;
 using LearnerAssistant.Models;
 using LearnerAssistant.Models.Response;
+using Microsoft.EntityFrameworkCore;
 
 namespace LearnerAssistant.Services.Implementation;
 
@@ -44,7 +45,7 @@ public class SubjectsService(
     return subject;
 
   }
-/// <inheritdoc/>
+  /// <inheritdoc/>
 
   public async Task<IReadOnlyList<SubjectResponseDto>> GetSubjectsAsync()
   => await _context.Subjects
@@ -61,20 +62,46 @@ public class SubjectsService(
       }).ToReadOnlyListAsync();
 
 
-  public Task<IReadOnlyList<SubjectResponseDto>> GetSubjectByIdAsync(Guid id)
-  {
-    throw new NotImplementedException();
-  }
+  public async Task<IReadOnlyList<SubjectResponseDto>> GetSubjectByIdAsync(Guid id)
+  => await _context.Subjects.Where(s => s.Id == id)
+    .Select(s => new SubjectResponseDto
+    {
+      Id = s.Id,
+      Name = s.Name,
+      Description = s.SubjectDescription,
+      SubjectImageUrl = s.SubjectImageUrl,
+      PrescribedTextBook = s.PrescribedTextBook,
+      Grade = s.GradeSubjects.FirstOrDefault().Grade.Name,
+      Year = s.SubjectYears.FirstOrDefault().Year.YearNumber.ToString(),
+    }).ToReadOnlyListAsync();
 
-  public Task<IReadOnlyList<SubjectResponseDto>> GetSubjectsByGradeAsync(string grade)
-  {
-    throw new NotImplementedException();
-  }
 
-  public Task<IReadOnlyList<SubjectResponseDto>> GetSubjectsByYearAsync(int year)
-  {
-    throw new NotImplementedException();
-  }
+  public async Task<IReadOnlyList<SubjectResponseDto>> GetSubjectsByGradeAsync(Guid gradeId)
+  => await _context.Subjects
+      .Where(s => s.GradeSubjects.Any(s => s.GradeId == gradeId))
+      .Select(s => new SubjectResponseDto
+      {
+        Id = s.Id,
+        Name = s.Name,
+        Description = s.SubjectDescription,
+        SubjectImageUrl = s.SubjectImageUrl,
+        PrescribedTextBook = s.PrescribedTextBook,
+        Grade = s.GradeSubjects.FirstOrDefault().Grade.Name,
+        Year = s.SubjectYears.FirstOrDefault().Year.YearNumber.ToString(),
+      }).ToReadOnlyListAsync();
+  public async Task<IReadOnlyList<SubjectResponseDto>> GetSubjectsByYearAsync(Guid yearId)
+  => await _context.Subjects
+      .Where(s => s.SubjectYears.Any(s => s.YearId == yearId))
+      .Select(s => new SubjectResponseDto
+      {
+        Id = s.Id,
+        Name = s.Name,
+        Description = s.SubjectDescription,
+        SubjectImageUrl = s.SubjectImageUrl,
+        PrescribedTextBook = s.PrescribedTextBook,
+        Grade = s.GradeSubjects.FirstOrDefault().Grade.Name,
+        Year = s.SubjectYears.FirstOrDefault().Year.YearNumber.ToString(),
+      }).ToReadOnlyListAsync();
 
   public Task<Subject> UpdateSubjectAsync(SubjectDto model)
   {
