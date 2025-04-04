@@ -155,9 +155,9 @@ public class SubjectsService(
       case GradeLookupEnum.Grade10:
         return "Grade 10";
       case GradeLookupEnum.Grade11:
-        return "Grade 10";
+        return "Grade 11";
       case GradeLookupEnum.Grade12:
-        return "Grade 10";
+        return "Grade 12";
       default:
         throw new ArgumentOutOfRangeException();
     }
