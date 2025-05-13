@@ -3,6 +3,8 @@ using LearnerAssistant.Services;
 using LearnerAssistant.Services.Implementation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Services.Implementations;
+using Services.Interfaces;
 using System.Reflection;
 
 const string CorsPolicy = "ALLOWOPTIONS";
@@ -25,6 +27,10 @@ builder.Services.AddScoped<IGradesService, GradesService>();
 builder.Services.AddScoped<IGradeSubjectsService, GradeSubjectsService>();
 builder.Services.AddScoped<IPastPapersService, PastPapersService>();
 builder.Services.AddScoped<IPastMemorandumService, PastMemorandumService>();
+builder.Services.AddScoped<IChapterService, ChapterService>();
+builder.Services.AddScoped<IChapterSectionService, ChapterSectionService>();
+
+
 builder.Services.AddDbContext<ApplicationDbContext>(
     options =>
         options.UseSqlServer(
