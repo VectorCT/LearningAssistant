@@ -16,7 +16,7 @@ public class YearConfiguration : IEntityTypeConfiguration<Year>
     builder.HasMany(y => y.TermYears)
             .WithOne(ty => ty.Year)
             .HasForeignKey(ty => ty.YearId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
 
     // Seeding some sample years
     builder.HasData(
