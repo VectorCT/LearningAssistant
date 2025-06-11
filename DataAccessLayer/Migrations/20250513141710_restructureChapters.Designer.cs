@@ -4,6 +4,7 @@ using DataAccessLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250513141710_restructureChapters")]
+    partial class restructureChapters
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,7 +166,7 @@ namespace DataAccessLayer.Migrations
                         {
                             Id = "default-admin-id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7aa07c2a-eeb6-45ec-9803-6de4e395367d",
+                            ConcurrencyStamp = "be319529-9300-4d63-ab70-d9548f83b23c",
                             Email = "calvintshabalala9@gmail.com",
                             EmailConfirmed = true,
                             IsAccountDisabled = false,
@@ -171,9 +174,9 @@ namespace DataAccessLayer.Migrations
                             Name = "Admin",
                             NormalizedEmail = "CALVINTSHABALALA9@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIqHm0baav1ZbA6bFRoH5XmIWm2EeLCvwSBwSgIfjvidtKZiEY4Vn74XSJ3Rn4/0Gw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFHZZI0V1glDtgkrmzaratrKXjOdWSDTltPZRZz/xOnjiUmBB9YwNPyIg9Zlf6DuGw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "add92cee-acfa-4370-b522-b57e2d2b690e",
+                            SecurityStamp = "fea0c9f5-3baf-43db-b375-ce2e5841aa0e",
                             Surname = "User",
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -193,11 +196,6 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
 
                     b.Property<Guid>("SubjectId")
                         .HasColumnType("uniqueidentifier");
@@ -230,17 +228,12 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("ParentSectionId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ChapterId");
-
-                    b.HasIndex("ParentSectionId");
 
                     b.ToTable("ChapterSection");
                 });
@@ -321,7 +314,7 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("97e2db24-ecda-499d-868c-dfbcf455ca89"),
+                            Id = new Guid("2a218ade-2694-4294-96a9-0324eb1d96b0"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "What are common algebra problems students face?",
                             SubjectId = new Guid("3fe2283b-6751-4633-8903-2043997bbf20"),
@@ -329,7 +322,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("637fb787-d46f-48d3-ab26-fe745766d52a"),
+                            Id = new Guid("73db6e37-009d-4939-855e-a3e64547543d"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "How do we understand Newton’s Laws?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -337,7 +330,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8920e0d8-ef9a-4001-94b7-fe7640f96d6e"),
+                            Id = new Guid("4a5d9366-ea08-4a42-a7a1-33f9e8baafe7"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "What are the best study guides for exam preparation?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -345,7 +338,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("bb15272d-beb6-4a28-9c1e-2b89e353a87f"),
+                            Id = new Guid("3c5bd506-87ad-4f93-b44c-e7d1d05cbd39"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "How should I approach exam preparation effectively?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -353,7 +346,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0d546113-3176-48ab-9ec6-d63a151b5c1f"),
+                            Id = new Guid("70e735f3-2f8d-4b04-a55e-cabdb11aa316"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "What are common algebra problems students face?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -670,25 +663,25 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8058424b-83b1-4077-b756-910ac9448108"),
+                            Id = new Guid("641cf045-fc16-4299-968b-4fb00479c4a8"),
                             Duration = "Jan - Mar",
                             Name = "Term 1"
                         },
                         new
                         {
-                            Id = new Guid("a0be02a9-cbac-4318-b6ec-2207966a5c7b"),
+                            Id = new Guid("0c9d64be-d163-4b10-ac7d-befd96b5ed1f"),
                             Duration = "Apr - Jun",
                             Name = "Term 2"
                         },
                         new
                         {
-                            Id = new Guid("50d87b43-6aea-48df-ac8b-dcd9340203a5"),
+                            Id = new Guid("0f89fe64-e58c-48c4-9227-3ecaea20a7d8"),
                             Duration = "Jul - Sep",
                             Name = "Term 3"
                         },
                         new
                         {
-                            Id = new Guid("a6340666-5d6f-4335-9ef8-2b30e6b2f621"),
+                            Id = new Guid("fe43385d-7dce-4431-8d39-b7a90d91b7c7"),
                             Duration = "Oct - Dec",
                             Name = "Term 4"
                         });
@@ -970,27 +963,27 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ddd7617f-c9bd-4fe9-bef7-aba0c17d3a56"),
+                            Id = new Guid("5fd8fd77-57f2-41a8-aca8-c608842345d4"),
                             YearNumber = 2020
                         },
                         new
                         {
-                            Id = new Guid("e55875ab-2394-4b5d-822e-add0be798cae"),
+                            Id = new Guid("37520dfd-bdae-46d2-8bc3-3ee23a886f64"),
                             YearNumber = 2021
                         },
                         new
                         {
-                            Id = new Guid("43756c9a-d179-460a-b84d-a8e4946c3e10"),
+                            Id = new Guid("69d59ab7-af44-464d-8645-9c5428f6fd66"),
                             YearNumber = 2022
                         },
                         new
                         {
-                            Id = new Guid("f04cf27e-bb93-4d5b-b9fe-06fc1602c33e"),
+                            Id = new Guid("46cbc764-99b6-475a-82af-6ec479cf3fb2"),
                             YearNumber = 2023
                         },
                         new
                         {
-                            Id = new Guid("36ca013c-4d00-404f-a369-3a1a12c166f8"),
+                            Id = new Guid("d72512f4-c828-490b-8c09-70bce1b3e76c"),
                             YearNumber = 2024
                         });
                 });
@@ -1085,14 +1078,7 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DataAccessLayer.Models.ChapterSection", "ParentSection")
-                        .WithMany("ChildSections")
-                        .HasForeignKey("ParentSectionId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("Chapter");
-
-                    b.Navigation("ParentSection");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Comment", b =>
@@ -1249,7 +1235,7 @@ namespace DataAccessLayer.Migrations
                     b.HasOne("Year", "Year")
                         .WithMany("TermYears")
                         .HasForeignKey("YearId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Term");
@@ -1361,11 +1347,6 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Questions");
 
                     b.Navigation("Sections");
-                });
-
-            modelBuilder.Entity("DataAccessLayer.Models.ChapterSection", b =>
-                {
-                    b.Navigation("ChildSections");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Comment", b =>
