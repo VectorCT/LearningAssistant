@@ -17,14 +17,12 @@ public class TermConfiguration : IEntityTypeConfiguration<Term>
     builder.Property(t => t.Duration)
            .IsRequired();
 
-    // Defining foreign key relationship with Year
     builder
             .HasMany(t => t.TermYears)
             .WithOne(ty => ty.Term)
             .HasForeignKey(ty => ty.TermId)
             .OnDelete(DeleteBehavior.Cascade);
 
-    // Seed Data (Optional)
     builder.HasData(
         new Term { Id = Guid.NewGuid(), Name = "Term 1", Duration = "Jan - Mar" },
         new Term { Id = Guid.NewGuid(), Name = "Term 2", Duration = "Apr - Jun" },
