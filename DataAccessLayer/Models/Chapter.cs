@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataAccessLayer.Models
+﻿namespace DataAccessLayer.Models
 {
   public class Chapter
   {
@@ -14,8 +8,10 @@ namespace DataAccessLayer.Models
     public Guid TermId { get; set; }
     public Term Term { get; set; }
     public int ChapterNumber { get; set; }
-    public string Content { get; set; }
     public string ChapterTitle { get; set; }
+    public string Description { get; set; }
+
+    public ICollection<ChapterSection> Sections { get; set; } = [];
     public ICollection<Question> Questions { get; set; } = [];
   }
 }

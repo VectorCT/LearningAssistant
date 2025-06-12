@@ -1,25 +1,30 @@
 ﻿using DataAccessLayer.Models;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DataAccessLayer.Configurations;
-
-public class ChapterConfiguration : IEntityTypeConfiguration<Chapter>
+namespace DataAccessLayer.Configurations
 {
-  public void Configure(EntityTypeBuilder<Chapter> builder)
+  public class ChapterConfiguration : IEntityTypeConfiguration<Chapter>
   {
-    builder
-        .Property(c => c.ChapterTitle)
-        .HasMaxLength(200)
-        .IsRequired();
+    public void Configure(EntityTypeBuilder<Chapter> builder)
+    {
+      builder.Property(c => c.ChapterTitle)
+             .HasMaxLength(200)
+             .IsRequired();
+      builder.Property(c => c.Description)
+             .HasMaxLength(500)
+             .IsRequired();
 
-    builder
-        .Property(c => c.ChapterNumber)
-        .IsRequired();
+      builder.Property(c => c.ChapterNumber)
+             .IsRequired();
 
-    builder
-        .HasOne(c => c.Term)
-        .WithMany(t => t.Chapters)
-        .HasForeignKey(c => c.TermId);
+      builder.HasOne(c => c.Term)
+             .WithMany(t => t.Chapters)
+             .HasForeignKey(c => c.TermId);
+
+      builder.HasMany(c => c.Sections)
+             .WithOne(s => s.Chapter)
+             .HasForeignKey(s => s.ChapterId);
+    }
   }
 }
