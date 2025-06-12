@@ -29,6 +29,7 @@ builder.Services.AddScoped<IPastPapersService, PastPapersService>();
 builder.Services.AddScoped<IPastMemorandumService, PastMemorandumService>();
 builder.Services.AddScoped<IChapterService, ChapterService>();
 builder.Services.AddScoped<IChapterSectionService, ChapterSectionService>();
+builder.Services.AddScoped<IForumService, ForumService>();
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(

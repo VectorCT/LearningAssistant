@@ -1,15 +1,10 @@
-﻿using System.Xml.Linq;
+﻿namespace LearnerAssistant.Models;
 
-namespace DataAccessLayer.Models;
-
-public class Forum
+public class ForumDto
 {
-  public Guid Id { get; set; }
   public string Topic { get; set; } = string.Empty;
   public string DiscussionQuestion { get; set; } = string.Empty;
   public string? Screenshot { get; set; }
   public DateTime CreatedAt { get; set; }
   public Guid SubjectId { get; set; }
-  public Subject? Subject { get; set; }
-  public List<Comment> Comments { get; set; }
 }
