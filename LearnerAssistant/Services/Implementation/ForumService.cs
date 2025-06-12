@@ -125,7 +125,7 @@ public class ForumService : IForumService
     var fileName = $"{Guid.NewGuid()}_{screenshot.FileName}";
     var filePath = Path.Combine(UploadsFolder, fileName);
 
-    Directory.CreateDirectory(UploadsFolder); // Ensure the folder exists
+    Directory.CreateDirectory(UploadsFolder);
     using (var stream = new FileStream(filePath, FileMode.Create))
     {
       await screenshot.CopyToAsync(stream);

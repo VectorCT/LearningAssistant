@@ -18,6 +18,7 @@ public class ChapterService(ApplicationDbContext context) : IChapterService
     .Include(c => c.Sections)
     .Select(c => new ChapterDto
     {
+      ChapterNumber = c.ChapterNumber,
       ChapterTitle = c.ChapterTitle,
       SubjectId = c.SubjectId,
       TermId = c.TermId,
