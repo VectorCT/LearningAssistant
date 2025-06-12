@@ -9,9 +9,9 @@ public class ChapterSectionDto
   public Guid ChapterId { get; set; }
   public SectionType Type { get; set; }
   public string SectionType { get; set; }
-  public string Content { get; set; } // Only used if not image
+  public string Content { get; set; }
   public int Order { get; set; }
-  public IFormFile Image { get; set; } // Only used if type == Image
+  public IFormFile Image { get; set; }
   public Guid? ParentSectionId { get; set; }
   public ChapterSectionDto ParentSection { get; set; }
   public ICollection<ChapterSectionDto> ChildSections { get; set; }

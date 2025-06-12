@@ -4,6 +4,7 @@ namespace LearnerAssistant.Models;
 
 public class ChapterDto
 {
+  public Guid Id { get; set; }
   public Guid SubjectId { get; set; }
   public Guid TermId { get; set; }
   public int ChapterNumber { get; set; }

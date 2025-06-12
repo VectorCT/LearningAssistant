@@ -1,6 +1,8 @@
 using DataAccessLayer.Context;
+using DataAccessLayer.Models;
 using LearnerAssistant.Services;
 using LearnerAssistant.Services.Implementation;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Services.Implementations;
@@ -30,7 +32,19 @@ builder.Services.AddScoped<IPastMemorandumService, PastMemorandumService>();
 builder.Services.AddScoped<IChapterService, ChapterService>();
 builder.Services.AddScoped<IChapterSectionService, ChapterSectionService>();
 builder.Services.AddScoped<IForumService, ForumService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<IApplicationUserService, ApplicationUserService>();
 
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+      options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+      options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+    });
 
 builder.Services.AddDbContext<ApplicationDbContext>(
     options =>

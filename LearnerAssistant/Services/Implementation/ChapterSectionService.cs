@@ -17,7 +17,6 @@ public class ChapterSectionService(ApplicationDbContext context) : IChapterSecti
       if (dto.Image == null || dto.Image.Length == 0)
         throw new Exception("Image file is required for image sections.");
 
-      // Save image to wwwroot/uploads or cloud storage
       var uploadsFolder = Path.Combine("wwwroot", "uploads");
       Directory.CreateDirectory(uploadsFolder);
 
