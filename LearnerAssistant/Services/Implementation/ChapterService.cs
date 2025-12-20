@@ -18,13 +18,12 @@ public class ChapterService(ApplicationDbContext context) : IChapterService
     .Include(c => c.Sections)
     .Select(c => new ChapterDto
     {
+      ChapterId = c.Id,
       ChapterNumber = c.ChapterNumber,
       ChapterTitle = c.ChapterTitle,
       SubjectId = c.SubjectId,
       TermId = c.TermId,
       Sections = c.Sections
-            .Where(s => s.ParentSectionId == null)
-            .OrderBy(s => s.Order)
             .Select(parent => new ChapterSectionDto
             {
               Id = parent.Id,

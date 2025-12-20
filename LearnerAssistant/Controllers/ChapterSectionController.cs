@@ -12,7 +12,7 @@ public class ChapterSectionsController(IChapterSectionService service) : Control
 
   [HttpPost]
   [Consumes("multipart/form-data")]
-  public async Task<IActionResult> Create([FromForm] ChapterSectionDto dto)
+  public async Task<IActionResult> Create([FromForm] ChapterSectionCreateDto dto)
   {
     var created = await _service.CreateAsync(dto);
     return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);

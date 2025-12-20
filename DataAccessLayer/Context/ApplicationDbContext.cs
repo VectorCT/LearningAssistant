@@ -1,5 +1,4 @@
-﻿
-using DataAccessLayer.Models;
+﻿using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -19,8 +18,9 @@ public class ApplicationDbContext(
   public DbSet<Term> Terms { get; set; }
   public DbSet<Year> Years { get; set; }
   public DbSet<Chapter> Chapters { get; set; }
+  public DbSet<ChapterSection> ChapterSections { get; set; }
   public DbSet<PastPaper> PastPapers { get; set; }
-  public DbSet<PastMemorandum> PastMemorandums { get;set; }
+  public DbSet<PastMemorandum> PastMemorandums { get; set; }
   public DbSet<PastPaperMemorandum> PastPaperMemorandums { get; set; }
   public DbSet<TextbookFile> TextbookFiles { get; set; }
   public DbSet<AdditionalTextBook> AdditionalTextBooks { get; set; }
@@ -33,11 +33,13 @@ public class ApplicationDbContext(
   public DbSet<MultipleChoiceAnswer> MultipleChoices { get; set; }
   public DbSet<TrueFalseAnswer> TrueFalseAnswers { get; set; }
 
-  protected override void OnModelCreating(
-      ModelBuilder modelBuilder)
+  protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     base.OnModelCreating(modelBuilder);
     modelBuilder.ApplyConfigurationsFromAssembly(
         Assembly.GetExecutingAssembly());
+
+    modelBuilder.Entity<Chapter>().HasData(Seed.ChapterSeed.GetChapters());
+    modelBuilder.Entity<ChapterSection>().HasData(Seed.ChapterSectionSeed.GetChapterSections());
   }
 }

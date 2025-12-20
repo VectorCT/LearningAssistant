@@ -11,8 +11,9 @@ public class ChapterSection
   public SectionType Type { get; set; }         // Title, Subtitle, Paragraph, Image, etc.
   public string Content { get; set; }           // Text or image URL depending on the type
   public int Order { get; set; }
+
+  // Hierarchical structure
   public Guid? ParentSectionId { get; set; }
   public ChapterSection? ParentSection { get; set; }
-  public ICollection<ChapterSection> ChildSections { get; set; }
-
+  public ICollection<ChapterSection> ChildSections { get; set; } = [];
 }

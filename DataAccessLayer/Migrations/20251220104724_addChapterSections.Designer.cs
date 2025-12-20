@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250612183231_seedChapterSections")]
-    partial class seedChapterSections
+    [Migration("20251220104724_addChapterSections")]
+    partial class addChapterSections
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -166,7 +166,7 @@ namespace DataAccessLayer.Migrations
                         {
                             Id = "default-admin-id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d32e4d02-3dd5-424f-ad7b-f0f9033afcff",
+                            ConcurrencyStamp = "ce35f0a1-bb66-4e57-b195-1c38ec6a2556",
                             Email = "calvintshabalala9@gmail.com",
                             EmailConfirmed = true,
                             IsAccountDisabled = false,
@@ -174,9 +174,9 @@ namespace DataAccessLayer.Migrations
                             Name = "Admin",
                             NormalizedEmail = "CALVINTSHABALALA9@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMTZooneDL6NgUVWb0joQ0QZTROrsurHKGEExsFeDGD+XnQpsVULuhP1WiVaXR92AQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJrdH0l0j+SFmO4oHEUv2EmBVfN4qprBLUVf1gTboaw5H5heRYo3OlbARNQFh8QsDg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5b35fdbb-0006-43af-9320-93bec8ce5d76",
+                            SecurityStamp = "996f1b0a-6f10-4fcd-8c01-2c40fe13c311",
                             Surname = "User",
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -225,6 +225,87 @@ namespace DataAccessLayer.Migrations
                             Description = "Basic concepts of biology.",
                             SubjectId = new Guid("5a5da2f4-f649-4994-95b1-228b82e9d98c"),
                             TermId = new Guid("aa10883b-b521-4c82-8cf5-7dfb4215ebe4")
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            ChapterNumber = 2,
+                            ChapterTitle = "Cell Structure",
+                            Description = "Understanding the building blocks of life.",
+                            SubjectId = new Guid("5a5da2f4-f649-4994-95b1-228b82e9d98c"),
+                            TermId = new Guid("aa10883b-b521-4c82-8cf5-7dfb4215ebe4")
+                        },
+                        new
+                        {
+                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                            ChapterNumber = 3,
+                            ChapterTitle = "Genetics",
+                            Description = "Introduction to genetics.",
+                            SubjectId = new Guid("5a5da2f4-f649-4994-95b1-228b82e9d98c"),
+                            TermId = new Guid("aa10883b-b521-4c82-8cf5-7dfb4215ebe4")
+                        },
+                        new
+                        {
+                            Id = new Guid("44444444-4444-4444-4444-444444444444"),
+                            ChapterNumber = 4,
+                            ChapterTitle = "Evolution",
+                            Description = "Theory of evolution.",
+                            SubjectId = new Guid("5a5da2f4-f649-4994-95b1-228b82e9d98c"),
+                            TermId = new Guid("aa10883b-b521-4c82-8cf5-7dfb4215ebe4")
+                        },
+                        new
+                        {
+                            Id = new Guid("55555555-5555-5555-5555-555555555555"),
+                            ChapterNumber = 5,
+                            ChapterTitle = "Ecology",
+                            Description = "Ecosystems and environment.",
+                            SubjectId = new Guid("5a5da2f4-f649-4994-95b1-228b82e9d98c"),
+                            TermId = new Guid("aa10883b-b521-4c82-8cf5-7dfb4215ebe4")
+                        },
+                        new
+                        {
+                            Id = new Guid("66666666-6666-6666-6666-666666666666"),
+                            ChapterNumber = 6,
+                            ChapterTitle = "Human Body",
+                            Description = "Human anatomy and physiology.",
+                            SubjectId = new Guid("5a5da2f4-f649-4994-95b1-228b82e9d98c"),
+                            TermId = new Guid("aa10883b-b521-4c82-8cf5-7dfb4215ebe4")
+                        },
+                        new
+                        {
+                            Id = new Guid("77777777-7777-7777-7777-777777777777"),
+                            ChapterNumber = 7,
+                            ChapterTitle = "Plant Biology",
+                            Description = "Plant structure and function.",
+                            SubjectId = new Guid("5a5da2f4-f649-4994-95b1-228b82e9d98c"),
+                            TermId = new Guid("aa10883b-b521-4c82-8cf5-7dfb4215ebe4")
+                        },
+                        new
+                        {
+                            Id = new Guid("88888888-8888-8888-8888-888888888888"),
+                            ChapterNumber = 8,
+                            ChapterTitle = "Microbiology",
+                            Description = "Microorganisms and their roles.",
+                            SubjectId = new Guid("5a5da2f4-f649-4994-95b1-228b82e9d98c"),
+                            TermId = new Guid("aa10883b-b521-4c82-8cf5-7dfb4215ebe4")
+                        },
+                        new
+                        {
+                            Id = new Guid("99999999-9999-9999-9999-999999999999"),
+                            ChapterNumber = 9,
+                            ChapterTitle = "Biotechnology",
+                            Description = "Applications of biology.",
+                            SubjectId = new Guid("5a5da2f4-f649-4994-95b1-228b82e9d98c"),
+                            TermId = new Guid("aa10883b-b521-4c82-8cf5-7dfb4215ebe4")
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+                            ChapterNumber = 10,
+                            ChapterTitle = "Conservation",
+                            Description = "Conservation of biodiversity.",
+                            SubjectId = new Guid("5a5da2f4-f649-4994-95b1-228b82e9d98c"),
+                            TermId = new Guid("aa10883b-b521-4c82-8cf5-7dfb4215ebe4")
                         });
                 });
 
@@ -256,12 +337,12 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("ParentSectionId");
 
-                    b.ToTable("ChapterSection");
+                    b.ToTable("ChapterSections");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("44444444-4444-4444-4444-444444444444"),
+                            Id = new Guid("a1a1a1a1-a1a1-a1a1-a1a1-a1a1a1a1a1a1"),
                             ChapterId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Content = "What is Biology?",
                             Order = 1,
@@ -269,11 +350,79 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("55555555-5555-5555-5555-555555555555"),
+                            Id = new Guid("a2a2a2a2-a2a2-a2a2-a2a2-a2a2a2a2a2a2"),
                             ChapterId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Content = "Biology is the study of living organisms.",
                             Order = 2,
-                            ParentSectionId = new Guid("44444444-4444-4444-4444-444444444444"),
+                            ParentSectionId = new Guid("a1a1a1a1-a1a1-a1a1-a1a1-a1a1a1a1a1a1"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("a3a3a3a3-a3a3-a3a3-a3a3-a3a3a3a3a3a3"),
+                            ChapterId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Content = "Cell Structure Overview",
+                            Order = 1,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("a4a4a4a4-a4a4-a4a4-a4a4-a4a4a4a4a4a4"),
+                            ChapterId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Content = "Cells are the basic units of life.",
+                            Order = 2,
+                            ParentSectionId = new Guid("a3a3a3a3-a3a3-a3a3-a3a3-a3a3a3a3a3a3"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("a5a5a5a5-a5a5-a5a5-a5a5-a5a5a5a5a5a5"),
+                            ChapterId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            Content = "Introduction to Genetics",
+                            Order = 1,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("a6a6a6a6-a6a6-a6a6-a6a6-a6a6a6a6a6a6"),
+                            ChapterId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            Content = "Genes are units of heredity.",
+                            Order = 2,
+                            ParentSectionId = new Guid("a5a5a5a5-a5a5-a5a5-a5a5-a5a5a5a5a5a5"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("a7a7a7a7-a7a7-a7a7-a7a7-a7a7a7a7a7a7"),
+                            ChapterId = new Guid("44444444-4444-4444-4444-444444444444"),
+                            Content = "Theory of Evolution",
+                            Order = 1,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("a8a8a8a8-a8a8-a8a8-a8a8-a8a8a8a8a8a8"),
+                            ChapterId = new Guid("44444444-4444-4444-4444-444444444444"),
+                            Content = "Evolution explains diversity.",
+                            Order = 2,
+                            ParentSectionId = new Guid("a7a7a7a7-a7a7-a7a7-a7a7-a7a7a7a7a7a7"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9"),
+                            ChapterId = new Guid("55555555-5555-5555-5555-555555555555"),
+                            Content = "Ecosystems",
+                            Order = 1,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b1b1"),
+                            ChapterId = new Guid("55555555-5555-5555-5555-555555555555"),
+                            Content = "Ecosystems are communities of organisms.",
+                            Order = 2,
+                            ParentSectionId = new Guid("a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9"),
                             Type = 2
                         });
                 });
@@ -357,7 +506,7 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("12592406-647b-4c68-bd06-0ad14a665077"),
+                            Id = new Guid("f7498361-6dd4-4421-9674-ea6963c5b7de"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "What are common algebra problems students face?",
                             SubjectId = new Guid("3fe2283b-6751-4633-8903-2043997bbf20"),
@@ -365,7 +514,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4e789033-2c18-488f-b1ba-4093b2c77053"),
+                            Id = new Guid("fd7b32ad-1b2b-48bc-9709-1d6041f8417c"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "How do we understand Newton’s Laws?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -373,7 +522,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("644838f5-d3fe-4210-b3e9-aaa2df8303cd"),
+                            Id = new Guid("f30cd2a6-0286-4cf7-9513-0a3cb50f0b22"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "What are the best study guides for exam preparation?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -381,7 +530,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a64ddebd-47dd-433b-8d8a-ba45ee975b4c"),
+                            Id = new Guid("34c1dd73-3bac-4569-80d9-128f4cf563bb"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "How should I approach exam preparation effectively?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -389,7 +538,7 @@ namespace DataAccessLayer.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3eda5bc4-4dda-4a08-890e-8b1cbb188adc"),
+                            Id = new Guid("0abf9894-3900-4f4c-a5ef-ba38e65fe4a9"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DiscussionQuestion = "What are common algebra problems students face?",
                             SubjectId = new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"),
@@ -706,25 +855,25 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("35d8f4d4-7e22-4cb0-8ebe-c9438eb5dc12"),
+                            Id = new Guid("58a711dd-bcf1-48fd-a01b-2106bef410d1"),
                             Duration = "Jan - Mar",
                             Name = "Term 1"
                         },
                         new
                         {
-                            Id = new Guid("e6e44195-e518-4f7e-b573-40f5eb5e7b17"),
+                            Id = new Guid("8e315cd9-f52b-4a76-adc4-376dadcb0af2"),
                             Duration = "Apr - Jun",
                             Name = "Term 2"
                         },
                         new
                         {
-                            Id = new Guid("b3895435-34c2-417c-bbe8-d2ed98a812df"),
+                            Id = new Guid("34ef466b-aa20-463a-8f8d-03597c21a784"),
                             Duration = "Jul - Sep",
                             Name = "Term 3"
                         },
                         new
                         {
-                            Id = new Guid("9467f589-2992-4b73-a436-d386f877df69"),
+                            Id = new Guid("cec54d64-6c2d-4fe2-83ef-38bee82d3be8"),
                             Duration = "Oct - Dec",
                             Name = "Term 4"
                         });
@@ -1006,27 +1155,27 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("08e5841c-a6ee-42e4-8272-c4f41d078082"),
+                            Id = new Guid("3b80c8d7-bf13-4b58-aeea-60591dea4987"),
                             YearNumber = 2020
                         },
                         new
                         {
-                            Id = new Guid("627d3968-8dd1-4aa4-8e31-f9b61fd4c017"),
+                            Id = new Guid("e9880002-95b7-4e23-8fb9-dea3e7c0a2a3"),
                             YearNumber = 2021
                         },
                         new
                         {
-                            Id = new Guid("ccc2043c-3ccc-4285-95c2-f63daec454b0"),
+                            Id = new Guid("9d2d9624-c06e-4c51-9600-4be41e3d0f07"),
                             YearNumber = 2022
                         },
                         new
                         {
-                            Id = new Guid("b188f316-9bbd-4adb-9c3e-bdc5b7d405f5"),
+                            Id = new Guid("122ac230-43e6-4a77-9888-482a5eafa37c"),
                             YearNumber = 2023
                         },
                         new
                         {
-                            Id = new Guid("254d2ed0-f07c-4a85-b61d-3f216d543caa"),
+                            Id = new Guid("0a27d1bd-5f60-4624-99df-3634d80f0924"),
                             YearNumber = 2024
                         });
                 });

@@ -9,7 +9,7 @@ public class ChapterSectionService(ApplicationDbContext context) : IChapterSecti
 {
   private readonly ApplicationDbContext _context = context;
 
-  public async Task<ChapterSectionDto> CreateAsync(ChapterSectionDto dto)
+  public async Task<ChapterSectionCreateDto> CreateAsync(ChapterSectionCreateDto dto)
   {
     string content;
     if (dto.Type == SectionType.Image)
@@ -17,7 +17,6 @@ public class ChapterSectionService(ApplicationDbContext context) : IChapterSecti
       if (dto.Image == null || dto.Image.Length == 0)
         throw new Exception("Image file is required for image sections.");
 
-      // Save image to wwwroot/uploads or cloud storage
       var uploadsFolder = Path.Combine("wwwroot", "uploads");
       Directory.CreateDirectory(uploadsFolder);
 
@@ -54,7 +53,7 @@ public class ChapterSectionService(ApplicationDbContext context) : IChapterSecti
   }
 
 
-  public async Task<ChapterSectionDto> UpdateAsync(ChapterSectionDto dto)
+  public async Task<ChapterSectionCreateDto> UpdateAsync(ChapterSectionDto dto)
   {
     var section = await _context.Set<ChapterSection>().FindAsync(dto.Id);
     if (section == null) return null;
@@ -101,23 +100,36 @@ public class ChapterSectionService(ApplicationDbContext context) : IChapterSecti
     return true;
   }
 
-  public async Task<ChapterSectionDto> GetByIdAsync(Guid id)
+  public async Task<ChapterSectionCreateDto?> GetByIdAsync(Guid id)
   {
     var entity = await _context.Set<ChapterSection>().FindAsync(id);
     return entity != null ? MapToDto(entity) : null;
   }
 
-  public async Task<IEnumerable<ChapterSectionDto>> GetAllByChapterAsync(Guid chapterId)
+  public async Task<IEnumerable<ChapterSectionCreateDto>> GetAllByChapterAsync(Guid chapterId)
   {
-    var sections = await _context.Set<ChapterSection>()
+    var sections = await _context.ChapterSections
         .Where(s => s.ChapterId == chapterId)
         .OrderBy(s => s.Order)
         .ToListAsync();
 
-    return sections.Select(MapToDto);
+    var sectionDict = sections.ToDictionary(s => s.Id);
+
+    foreach (var section in sections)
+    {
+        if (section.ParentSectionId.HasValue && sectionDict.TryGetValue(section.ParentSectionId.Value, out var parent))
+        {
+            parent.ChildSections.Add(section);
+        }
+    }
+
+    // Top-level sections (no parent)
+    var rootSections = sections.Where(s => s.ParentSectionId == null).ToList();
+
+    return rootSections.Select(MapToDto);
   }
 
-  private ChapterSectionDto MapToDto(ChapterSection section) => new()
+  private ChapterSectionCreateDto MapToDto(ChapterSection section) => new()
   {
     Id = section.Id,
     ChapterId = section.ChapterId,
@@ -125,6 +137,26 @@ public class ChapterSectionService(ApplicationDbContext context) : IChapterSecti
     Content = section.Content,
     Order = section.Order
   };
+
+  private static ChapterSectionDto MapToDto(
+    ChapterSection section,
+    Dictionary<Guid, List<ChapterSection>> childrenLookup)
+  {
+    return new ChapterSectionDto
+    {
+        Id = section.Id,
+        ChapterId = section.ChapterId,
+        Type = section.Type,
+        SectionType = section.Type.ToString(),
+        Content = section.Content,
+        Order = section.Order,
+        ParentSectionId = section.ParentSectionId,
+        ChildSections = childrenLookup.TryGetValue(section.Id, out var children)
+            ? children.Select(child => MapToDto(child, childrenLookup)).ToList()
+            : []
+    };
+  }
+
   private static string MapToDatabaseFormat(SectionTypeLookupEnum sectionType)
   {
     switch (sectionType)
