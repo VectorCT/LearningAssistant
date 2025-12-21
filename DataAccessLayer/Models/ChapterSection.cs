@@ -9,7 +9,8 @@ public class ChapterSection
   public Chapter Chapter { get; set; }
 
   public SectionType Type { get; set; }         // Title, Subtitle, Paragraph, Image, etc.
-  public string Content { get; set; }           // Text or image URL depending on the type
+  public string Content { get; set; }           // Text content
+  public string? Image { get; set; }            // Image URL/path (nullable)
   public int Order { get; set; }
 
   // Hierarchical structure

@@ -3,7 +3,6 @@ using LearnerAssistant.Services;
 using LearnerAssistant.Services.Implementation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Services.Implementations;
 using Services.Interfaces;
 using System.Reflection;
 
