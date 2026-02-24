@@ -31,5 +31,17 @@ public class QuestionConfiguration : IEntityTypeConfiguration<Question>
         .HasMany(q => q.Answers)
         .WithOne(a => a.Question)
         .HasForeignKey(a => a.QuestionId);
+
+    // Multiple-choice metadata
+    builder
+        .Property(q => q.Options)
+        .HasConversion(
+          v => string.Join("|||", v),
+          v => v.Split("|||", StringSplitOptions.RemoveEmptyEntries).ToList())
+        .HasColumnType("nvarchar(max)");
+
+    builder
+        .Property(q => q.MaxSelections)
+        .HasDefaultValue(1);
   }
 }

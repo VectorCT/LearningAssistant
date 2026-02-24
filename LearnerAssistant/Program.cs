@@ -29,7 +29,8 @@ builder.Services.AddScoped<IPastMemorandumService, PastMemorandumService>();
 builder.Services.AddScoped<IChapterService, ChapterService>();
 builder.Services.AddScoped<IChapterSectionService, ChapterSectionService>();
 builder.Services.AddScoped<IForumService, ForumService>();
-
+builder.Services.AddScoped<IQuestionService, QuestionService>();
+builder.Services.AddScoped<IAnswerService, AnswerService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(
     options =>

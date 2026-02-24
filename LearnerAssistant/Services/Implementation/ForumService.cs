@@ -53,18 +53,17 @@ public class ForumService : IForumService
 
   public async Task<ForumDto?> GetForumByIdAsync(Guid id)
   {
-    return null;
-    //return await _context.Forums
-    //  .Include(f => f.Subject)
-    //  .Where(f => f.Id == id)
-    //  .Select(x => new ForumDto()
-    //  {
-    //    Topic = x.Topic,
-    //    DiscussionQuestion = x.DiscussionQuestion,
-    //    CreatedAt = x.CreatedAt,
-    //    SubjectId = x.SubjectId,
-    //    Screenshot = x.Screenshot
-    //  });
+    return await _context.Forums
+      .Include(f => f.Subject)
+      .Where(f => f.Id == id)
+      .Select(x => new ForumDto()
+      {
+        Topic = x.Topic,
+        DiscussionQuestion = x.DiscussionQuestion,
+        CreatedAt = x.CreatedAt,
+        SubjectId = x.SubjectId,
+        Screenshot = x.Screenshot
+      }).FirstOrDefaultAsync();
   }
 
   public async Task<bool> UpdateForumAsync(Forum forum, IFormFile? screenshot)
