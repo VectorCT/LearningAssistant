@@ -31,6 +31,7 @@ builder.Services.AddScoped<IChapterSectionService, ChapterSectionService>();
 builder.Services.AddScoped<IForumService, ForumService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IAnswerService, AnswerService>();
+builder.Services.AddScoped<IQuizService, QuizService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(
     options =>

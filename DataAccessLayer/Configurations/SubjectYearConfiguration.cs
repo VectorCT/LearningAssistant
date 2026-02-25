@@ -8,7 +8,7 @@ public class SubjectYearConfiguration : IEntityTypeConfiguration<SubjectYear>
 {
   public void Configure(EntityTypeBuilder<SubjectYear> builder)
   {
-    builder.HasKey(ys => new { ys.YearId, ys.SubjectId });
+    builder.HasKey(ys => ys.Id);
 
     builder
         .HasOne(ys => ys.Year)

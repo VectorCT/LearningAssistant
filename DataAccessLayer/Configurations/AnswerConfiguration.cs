@@ -14,6 +14,10 @@ public class AnswerConfiguration : IEntityTypeConfiguration<Answer>
         .IsRequired();
 
     builder
+        .Property(a => a.CreatedAt)
+        .HasDefaultValueSql("GETDATE()");
+
+    builder
         .HasOne(a => a.Question)
         .WithMany(q => q.Answers)
         .HasForeignKey(a => a.QuestionId);

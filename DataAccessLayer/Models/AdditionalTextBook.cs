@@ -14,5 +14,7 @@ namespace DataAccessLayer.Models
     public string BookTitle { get; set; } = string.Empty;
     public string BookFilePath { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }
+    public DateTime? ModifiedAt { get; set; }
+    public string? CreatedBy { get; set; }
   }
 }

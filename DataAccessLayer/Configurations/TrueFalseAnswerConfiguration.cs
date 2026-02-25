@@ -14,6 +14,6 @@ public class TrueFalseAnswerConfiguration : IEntityTypeConfiguration<TrueFalseAn
 
     builder
         .Property(tfa => tfa.Explanation)
-        .HasMaxLength(500);  // Explanation for true/false
+        .HasMaxLength(2000);  // Explanation for true/false
   }
 }

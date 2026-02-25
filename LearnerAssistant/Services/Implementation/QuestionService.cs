@@ -27,7 +27,7 @@ namespace LearnerAssistant.Services.Implementation
           QuestionTypeId = q.QuestionTypeId,
           QuestionText = q.QuestionText,
           PointValue = q.PointValue,
-          Options = q.Options,
+          Options = string.IsNullOrEmpty(q.Options) ? new List<string>() : q.Options.Split("|||", StringSplitOptions.RemoveEmptyEntries).ToList(),
           MaxSelections = q.MaxSelections
         })
         .ToListAsync();
@@ -45,12 +45,12 @@ namespace LearnerAssistant.Services.Implementation
         QuestionTypeId = dto.QuestionTypeId,
         QuestionText = dto.QuestionText,
         PointValue = dto.PointValue,
-        Options = dto.Options ?? [],
+        Options = dto.Options != null && dto.Options.Count > 0 ? string.Join("|||", dto.Options) : string.Empty,
         MaxSelections = dto.MaxSelections ?? 1
       };
 
       // Basic validation for multiple-choice: if options provided, enforce 1 or 2 selections
-      if (entity.Options.Count > 0 && (entity.MaxSelections is < 1 or > 2))
+      if (!string.IsNullOrEmpty(entity.Options) && (entity.MaxSelections < 1 || entity.MaxSelections > 2))
         throw new ArgumentException("MaxSelections must be 1 or 2 when options are provided.");
 
       _context.Questions.Add(entity);
@@ -68,10 +68,10 @@ namespace LearnerAssistant.Services.Implementation
       entity.ChapterId = dto.ChapterId;
       entity.QuestionTypeId = dto.QuestionTypeId;
 
-      entity.Options = dto.Options ?? [];
+      entity.Options = dto.Options != null && dto.Options.Count > 0 ? string.Join("|||", dto.Options) : string.Empty;
       entity.MaxSelections = dto.MaxSelections ?? 1;
 
-      if (entity.Options.Count > 0 && (entity.MaxSelections is < 1 or > 2))
+      if (!string.IsNullOrEmpty(entity.Options) && (entity.MaxSelections < 1 || entity.MaxSelections > 2))
         throw new ArgumentException("MaxSelections must be 1 or 2 when options are provided.");
 
       await _context.SaveChangesAsync();
@@ -95,7 +95,7 @@ namespace LearnerAssistant.Services.Implementation
       QuestionTypeId = q.QuestionTypeId,
       QuestionText = q.QuestionText,
       PointValue = q.PointValue,
-      Options = q.Options,
+      Options = string.IsNullOrEmpty(q.Options) ? new List<string>() : q.Options.Split("|||", StringSplitOptions.RemoveEmptyEntries).ToList(),
       MaxSelections = q.MaxSelections
     };
   }

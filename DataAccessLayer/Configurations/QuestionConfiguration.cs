@@ -35,13 +35,15 @@ public class QuestionConfiguration : IEntityTypeConfiguration<Question>
     // Multiple-choice metadata
     builder
         .Property(q => q.Options)
-        .HasConversion(
-          v => string.Join("|||", v),
-          v => v.Split("|||", StringSplitOptions.RemoveEmptyEntries).ToList())
-        .HasColumnType("nvarchar(max)");
+        .HasMaxLength(4000)
+        .HasColumnType("nvarchar(4000)");
 
     builder
         .Property(q => q.MaxSelections)
         .HasDefaultValue(1);
+
+    builder
+        .Property(q => q.CreatedAt)
+        .HasDefaultValueSql("GETDATE()");
   }
 }

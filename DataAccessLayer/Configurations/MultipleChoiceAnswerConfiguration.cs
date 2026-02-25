@@ -10,10 +10,14 @@ public class MultipleChoiceAnswerConfiguration : IEntityTypeConfiguration<Multip
   {
     builder
         .Property(mca => mca.CorrectOption)
-        .IsRequired();
+        .HasMaxLength(4000);
+
+    builder
+        .Property(mca => mca.Options)
+        .HasMaxLength(4000);
 
     builder
         .Property(mca => mca.Explanation)
-        .HasMaxLength(1000);  // Optional explanation length
+        .HasMaxLength(2000);
   }
 }

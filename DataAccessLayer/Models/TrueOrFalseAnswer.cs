@@ -2,7 +2,7 @@
 
 public class TrueFalseAnswer : Answer
 {
-  public bool IsTrue { get; set; }  // True or False
+  public bool? IsTrue { get; set; }  // True or False
 
-  public string Explanation { get; set; } = string.Empty;  // Explanation for why the answer is true/false
+  public string? Explanation { get; set; }  // Explanation for why the answer is true/false
 }

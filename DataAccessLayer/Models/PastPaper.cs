@@ -10,5 +10,7 @@ public class PastPaper
   public string FileName { get; set; } = string.Empty;
   public string FilePath { get; set; } = string.Empty;
   public DateTime CreatedAt { get; set; }
+  public DateTime? ModifiedAt { get; set; }
+  public string? CreatedBy { get; set; }
   public PastMemorandum? PastMemorandum { get; set; }
 }

@@ -18,8 +18,6 @@ public class PastMemorandumConfiguration : IEntityTypeConfiguration<PastMemorand
         .HasMaxLength(500)
         .IsRequired();
 
-    builder
-        .HasOne(c => c.PastPaper)
-        .WithOne(t => t.PastMemorandum);
+    // Removed reference to PastPaper navigation property
   }
 }

@@ -33,7 +33,7 @@ namespace LearnerAssistant.Services.Implementation
         Id = Guid.NewGuid(),
         QuestionId = dto.QuestionId,
         Description = dto.Description,
-        Options = dto.Options ?? [],
+        Options = dto.Options != null && dto.Options.Count > 0 ? string.Join("|||", dto.Options) : null,
         CorrectOption = dto.CorrectOption,
         Explanation = dto.Explanation ?? string.Empty
       };
@@ -68,7 +68,7 @@ namespace LearnerAssistant.Services.Implementation
       if (entity == null) return null;
 
       entity.Description = dto.Description;
-      if (dto.Options != null) entity.Options = dto.Options;
+      if (dto.Options != null) entity.Options = dto.Options.Count > 0 ? string.Join("|||", dto.Options) : null;
       entity.CorrectOption = dto.CorrectOption;
       entity.Explanation = dto.Explanation ?? string.Empty;
 
@@ -109,7 +109,7 @@ namespace LearnerAssistant.Services.Implementation
           QuestionId = mc.QuestionId,
           Description = mc.Description,
           AnswerType = "MultipleChoice",
-          Options = mc.Options,
+          Options = string.IsNullOrEmpty(mc.Options) ? new List<string>() : mc.Options.Split("|||", StringSplitOptions.RemoveEmptyEntries).ToList(),
           CorrectOption = mc.CorrectOption,
           Explanation = mc.Explanation
         },

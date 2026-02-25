@@ -9,6 +9,5 @@ namespace DataAccessLayer.Models
     public DateTime CreatedAt { get; set; }
     public Guid PastPaperId { get; set; }
     public PastPaper PastPaper { get; set; }
-    public List<PastPaperMemorandum> PastPaperMemorandums { get; set; } = [];
   }
 }

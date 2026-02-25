@@ -13,10 +13,14 @@ public class ChapterSectionConfiguration : IEntityTypeConfiguration<ChapterSecti
            .IsRequired();
 
     builder.Property(s => s.Content)
-           .IsRequired();
+           .IsRequired()
+           .HasMaxLength(4000);
 
     builder.Property(s => s.Order)
            .IsRequired();
+
+    builder.Property(s => s.Image)
+           .HasMaxLength(1000);
 
     builder.HasOne(s => s.ParentSection)
        .WithMany(s => s.ChildSections)

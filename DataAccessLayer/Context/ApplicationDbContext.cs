@@ -21,7 +21,6 @@ public class ApplicationDbContext(
   public DbSet<ChapterSection> ChapterSections { get; set; }
   public DbSet<PastPaper> PastPapers { get; set; }
   public DbSet<PastMemorandum> PastMemorandums { get; set; }
-  public DbSet<PastPaperMemorandum> PastPaperMemorandums { get; set; }
   public DbSet<TextbookFile> TextbookFiles { get; set; }
   public DbSet<AdditionalTextBook> AdditionalTextBooks { get; set; }
   public DbSet<UserReaction> UserReactions { get; set; }
@@ -41,5 +40,15 @@ public class ApplicationDbContext(
 
     modelBuilder.Entity<Chapter>().HasData(Seed.ChapterSeed.GetChapters());
     modelBuilder.Entity<ChapterSection>().HasData(Seed.ChapterSectionSeed.GetChapterSections());
+
+    // Indexes configured per new DB schema
+    modelBuilder.Entity<Chapter>()
+                .HasIndex(c => new { c.SubjectId, c.TermId });
+
+    modelBuilder.Entity<Question>()
+                .HasIndex(q => new { q.ChapterId, q.QuestionTypeId });
+
+    modelBuilder.Entity<Comment>()
+                .HasIndex(c => new { c.ForumId, c.CreatedAt });
   }
 }

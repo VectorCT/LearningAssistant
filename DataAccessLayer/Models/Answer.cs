@@ -8,5 +8,9 @@ public abstract class Answer
   // Foreign key
   public Guid QuestionId { get; set; }
   public Question Question { get; set; }
+
+  public DateTime CreatedAt { get; set; }
+  public DateTime? ModifiedAt { get; set; }
+  public string? CreatedBy { get; set; }
 }
 

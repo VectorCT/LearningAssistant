@@ -26,6 +26,10 @@ public class ForumConfiguration : IEntityTypeConfiguration<Forum>
     builder
         .Property(c => c.CreatedAt)
         .HasDefaultValueSql("GETDATE()");
+
+    builder
+        .Property(f => f.Screenshot)
+        .HasMaxLength(1000);
     builder
         .HasOne(pp => pp.Subject)
         .WithMany(s => s.Forums)

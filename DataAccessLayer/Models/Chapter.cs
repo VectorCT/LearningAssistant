@@ -10,6 +10,8 @@
     public int ChapterNumber { get; set; }
     public string ChapterTitle { get; set; }
     public string Description { get; set; }
+    public DateTime? ModifiedAt { get; set; }
+    public string? CreatedBy { get; set; }
 
     public ICollection<ChapterSection> Sections { get; set; } = [];
     public ICollection<Question> Questions { get; set; } = [];
