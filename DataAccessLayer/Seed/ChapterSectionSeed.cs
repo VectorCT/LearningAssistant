@@ -9,8 +9,8 @@ public static class ChapterSectionSeed
     {
         return
         [
-            new ChapterSection { Id = Guid.Parse("a1a1a1a1-a1a1-a1a1-a1a1-a1a1a1a1a1a1"), ChapterId = Guid.Parse("11111111-1111-1111-1111-111111111111"), Type = SectionType.Title, Content = "What is Biology?", Order = 1, ParentSectionId = null },
-            new ChapterSection { Id = Guid.Parse("a2a2a2a2-a2a2-a2a2-a2a2-a2a2a2a2a2a2"), ChapterId = Guid.Parse("11111111-1111-1111-1111-111111111111"), Type = SectionType.Paragraph, Content = "Biology is the study of living organisms.", Order = 2, ParentSectionId = Guid.Parse("a1a1a1a1-a1a1-a1a1-a1a1-a1a1a1a1a1a1") },
+            new ChapterSection { Id = Guid.Parse("a1a1a1a1-a1a1-a1a1-a1a1-a1a1a1a1a1a1"), ChapterId = Guid.Parse("11111111-1111-1111-1111-111111111111"), Type = SectionType.Title, Content = "What is Technology?", Order = 1, ParentSectionId = null },
+            new ChapterSection { Id = Guid.Parse("a2a2a2a2-a2a2-a2a2-a2a2-a2a2a2a2a2a2"), ChapterId = Guid.Parse("11111111-1111-1111-1111-111111111111"), Type = SectionType.Paragraph, Content = "Technology is the application of scientific knowledge for practical purposes, including tools, machines, and systems.", Order = 2, ParentSectionId = Guid.Parse("a1a1a1a1-a1a1-a1a1-a1a1-a1a1a1a1a1a1") },
             new ChapterSection { Id = Guid.Parse("a3a3a3a3-a3a3-a3a3-a3a3-a3a3a3a3a3a3"), ChapterId = Guid.Parse("22222222-2222-2222-2222-222222222222"), Type = SectionType.Title, Content = "Cell Structure Overview", Order = 1, ParentSectionId = null },
             new ChapterSection { Id = Guid.Parse("a4a4a4a4-a4a4-a4a4-a4a4-a4a4a4a4a4a4"), ChapterId = Guid.Parse("22222222-2222-2222-2222-222222222222"), Type = SectionType.Paragraph, Content = "Cells are the basic units of life.", Order = 2, ParentSectionId = Guid.Parse("a3a3a3a3-a3a3-a3a3-a3a3-a3a3a3a3a3a3") },
             new ChapterSection { Id = Guid.Parse("a5a5a5a5-a5a5-a5a5-a5a5-a5a5a5a5a5a5"), ChapterId = Guid.Parse("33333333-3333-3333-3333-333333333333"), Type = SectionType.Title, Content = "Introduction to Genetics", Order = 1, ParentSectionId = null },
