@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LearnerAssistant.Controllers;
 
-[Route("[controller]")]
+[Route("api/[controller]")]
 [ApiController]
 public class ChapterSectionsController(IChapterSectionService service) : ControllerBase
 {

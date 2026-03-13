@@ -4,7 +4,7 @@ using Services.Interfaces;
 
 namespace LearnerAssistant.Controllers
 {
-  [Route("[controller]")]
+  [Route("api/[controller]")]
   [ApiController]
   public class AnswersController(IAnswerService service) : ControllerBase
   {

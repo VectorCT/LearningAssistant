@@ -6,7 +6,7 @@ using Services.Interfaces;
 namespace LearnerAssistant.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class ChaptersController(IChapterService chapterService) : ControllerBase
 {
   private readonly IChapterService _chapterService = chapterService;

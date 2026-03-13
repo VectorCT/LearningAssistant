@@ -42,6 +42,7 @@ public class ForumService : IForumService
       .Include(f => f.Subject)
       .Select(x => new ForumDto()
       {
+        Id = x.Id,
         Topic = x.Topic,
         DiscussionQuestion = x.DiscussionQuestion,
         CreatedAt = x.CreatedAt,

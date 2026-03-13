@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LearnerAssistant.Controllers
 {
   /// <inheritdoc/>
-  [Route("[controller]")]
+  [Route("api/[controller]")]
   [ApiController]
   public class PastPapersController(
     IPastPapersService pastPapers) : ControllerBase
