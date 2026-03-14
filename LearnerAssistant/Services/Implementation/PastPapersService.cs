@@ -51,9 +51,10 @@ public class PastPapersService
     {
       Id = p.Id,
       SubjectId = p.SubjectId,
+      YearId = p.YearId,
       FileName = p.FileName,
       FilePath = p.FilePath,
-      CreatedAt = DateTime.Now,
+      CreatedAt = p.CreatedAt,
     }).ToReadOnlyListAsync();
 
   public async Task<IReadOnlyList<PastPaperDto>> GetPastPapersBySubject(Guid subjectId)
@@ -62,6 +63,8 @@ public class PastPapersService
           .Select(p => new PastPaperDto
           {
             Id = p.Id,
+            SubjectId = p.SubjectId,
+            YearId = p.YearId,
             FileName = p.FileName,
             FilePath= p.FilePath,
           })

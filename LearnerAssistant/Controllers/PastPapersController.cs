@@ -37,8 +37,21 @@ namespace LearnerAssistant.Controllers
 
       return Ok(new { result.Id, result.FilePath });
     }
-    /// <inheritdoc/>
-    [HttpGet("{subjectId}")]
+        /// <inheritdoc/>
+        [HttpGet()]
+        public async Task<IActionResult> GetPastPapers()
+        {
+            var pastPapers = await _pastPapers.GetPastPapersAsync();
+
+            if (pastPapers == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(pastPapers);
+        }
+        /// <inheritdoc/>
+        [HttpGet("{subjectId}")]
     public async Task<IActionResult> GetPastPapersBySubject(Guid subjectId)
     {
       var pastPapers = await _pastPapers.GetPastPapersBySubject(subjectId);

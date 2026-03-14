@@ -7,9 +7,6 @@ using Services.Interfaces;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using LearnerAssistant.Data;
-using DataAccessLayer.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 const string CorsPolicy = "ALLOWOPTIONS";
 
@@ -39,6 +36,7 @@ builder.Services.AddScoped<IUserReactionService, UserReactionService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IAnswerService, AnswerService>();
 builder.Services.AddScoped<IQuizService, QuizService>();
+builder.Services.AddScoped<IVideoTutorialService, VideoTutorialService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(
     options =>
@@ -129,50 +127,50 @@ for (var attempt = 1; attempt <= maxAttempts; attempt++)
     }
 }
 
-// Seed mock users, forums, comments and reactions only in Development
-if (app.Environment.IsDevelopment())
-{
-  // users
-  var mockUsers = MockData.GetUsers();
-  foreach (var u in mockUsers)
-  {
-    if (!await dbContext.Users.AnyAsync(x => x.Id == u.Id))
-    {
-      dbContext.Users.Add(u);
-    }
-  }
+//// Seed mock users, forums, comments and reactions only in Development
+//if (app.Environment.IsDevelopment())
+//{
+//  // users
+//  var mockUsers = MockData.GetUsers();
+//  foreach (var u in mockUsers)
+//  {
+//    if (!await dbContext.Users.AnyAsync(x => x.Id == u.Id))
+//    {
+//      dbContext.Users.Add(u);
+//    }
+//  }
 
-  // forums
-  var mockForums = MockData.GetForums();
-  foreach (var f in mockForums)
-  {
-    if (!await dbContext.Forums.AnyAsync(x => x.Id == f.Id))
-    {
-      dbContext.Forums.Add(f);
-    }
-  }
+//  // forums
+//  var mockForums = MockData.GetForums();
+//  foreach (var f in mockForums)
+//  {
+//    if (!await dbContext.Forums.AnyAsync(x => x.Id == f.Id))
+//    {
+//      dbContext.Forums.Add(f);
+//    }
+//  }
 
-  // comments
-  var mockComments = MockData.GetComments();
-  foreach (var c in mockComments)
-  {
-    if (!await dbContext.Comments.AnyAsync(x => x.Id == c.Id))
-    {
-      dbContext.Comments.Add(c);
-    }
-  }
+//  // comments
+//  var mockComments = MockData.GetComments();
+//  foreach (var c in mockComments)
+//  {
+//    if (!await dbContext.Comments.AnyAsync(x => x.Id == c.Id))
+//    {
+//      dbContext.Comments.Add(c);
+//    }
+//  }
 
-  // reactions
-  var mockReactions = MockData.GetUserReactions();
-  foreach (var r in mockReactions)
-  {
-    if (!await dbContext.UserReactions.AnyAsync(x => x.Id == r.Id))
-    {
-      dbContext.UserReactions.Add(r);
-    }
-  }
+//  // reactions
+//  var mockReactions = MockData.GetUserReactions();
+//  foreach (var r in mockReactions)
+//  {
+//    if (!await dbContext.UserReactions.AnyAsync(x => x.Id == r.Id))
+//    {
+//      dbContext.UserReactions.Add(r);
+//    }
+//  }
 
-  await dbContext.SaveChangesAsync();
-}
+//  await dbContext.SaveChangesAsync();
+//}
 
 app.Run();
