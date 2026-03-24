@@ -14,37 +14,16 @@ public class ChapterService(ApplicationDbContext context) : IChapterService
   public async Task<IEnumerable<ChapterDto>> GetAllChaptersAsync()
   {
     var chapters = await _context.Chapters
-      .Include(c => c.Sections)
+      .AsNoTracking()
       .Select(c => new ChapterDto
       {
         ChapterId = c.Id,
         ChapterNumber = c.ChapterNumber,
         ChapterTitle = c.ChapterTitle,
         SubjectId = c.SubjectId,
-        TermId = c.TermId,
-        Sections = c.Sections
-          .Select(parent => new ChapterSectionDto
-          {
-            Id = parent.Id,
-            ChapterId = parent.ChapterId,
-            Type = parent.Type,
-            Content = parent.Content,
-            ImageUrl = parent.Image,
-            Order = parent.Order,
-            ChildSections = c.Sections
-              .Where(s => s.ParentSectionId == parent.Id)
-              .OrderBy(s => s.Order)
-              .Select(child => new ChapterSectionDto
-              {
-                Id = child.Id,
-                ChapterId = parent.ChapterId,
-                Type = child.Type,
-                Content = child.Content,
-                ImageUrl = child.Image,
-                Order = child.Order
-              }).ToList()
-          }).ToList()
-      }).ToListAsync();
+        TermId = c.TermId
+      })
+      .ToListAsync();
 
     return chapters;
   }

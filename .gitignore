@@ -9,3 +9,7 @@
 /LearnerAssistant/obj
 /.vs
 /LearnerAssistant/Uploads
+/.kiro/specs
+/.vscode
+/DataAccessLayer/bin/Release/net8.0
+/LearnerAssistant/bin/Release/net8.0
