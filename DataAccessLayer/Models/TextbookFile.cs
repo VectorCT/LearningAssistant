@@ -8,6 +8,5 @@ public class TextbookFile
   public string FileName { get; set; }
   public string FilePath { get; set; }
   public DateTime CreatedAt { get; set; }
-  public DateTime? ModifiedAt { get; set; }
-  public string? CreatedBy { get; set; }
+  // ModifiedAt and CreatedBy removed - not in database schema
 }

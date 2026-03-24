@@ -23,11 +23,6 @@ public class TermConfiguration : IEntityTypeConfiguration<Term>
             .HasForeignKey(ty => ty.TermId)
             .OnDelete(DeleteBehavior.Cascade);
 
-    builder.HasData(
-        new Term { Id = Guid.NewGuid(), Name = "Term 1", Duration = "Jan - Mar" },
-        new Term { Id = Guid.NewGuid(), Name = "Term 2", Duration = "Apr - Jun" },
-        new Term { Id = Guid.NewGuid(), Name = "Term 3", Duration = "Jul - Sep" },
-        new Term { Id = Guid.NewGuid(), Name = "Term 4", Duration = "Oct - Dec" }
-    );
+    // Seed data removed
   }
 }

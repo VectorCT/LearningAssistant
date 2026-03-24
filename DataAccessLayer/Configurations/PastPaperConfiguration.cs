@@ -25,6 +25,7 @@ public class PastPaperConfiguration : IEntityTypeConfiguration<PastPaper>
     builder
         .HasOne(c => c.Year)
         .WithMany(t => t.PastPapers)
-        .HasForeignKey(c => c.YearId);
+        .HasForeignKey(c => c.YearId)
+        .IsRequired(false);
   }
 }

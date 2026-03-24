@@ -8,11 +8,12 @@ namespace LearnerAssistant.Services.Implementation;
 public class ForumService : IForumService
 {
   private readonly ApplicationDbContext _context;
-  private const string UploadsFolder = "wwwroot/uploads";
+  private readonly string _uploadsPath;
 
   public ForumService(ApplicationDbContext context)
   {
     _context = context;
+    _uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
   }
 
   public async Task<Forum> CreateForumAsync(ForumDto forumDto, IFormFile? screenshot)
@@ -122,15 +123,24 @@ public class ForumService : IForumService
 
   private async Task<string> SaveScreenshotAsync(IFormFile screenshot)
   {
-    var fileName = $"{Guid.NewGuid()}_{screenshot.FileName}";
-    var filePath = Path.Combine(UploadsFolder, fileName);
-
-    Directory.CreateDirectory(UploadsFolder);
-    using (var stream = new FileStream(filePath, FileMode.Create))
+    try
     {
-      await screenshot.CopyToAsync(stream);
-    }
+      var fileName = $"{Guid.NewGuid()}_{screenshot.FileName}";
+      var filePath = Path.Combine(_uploadsPath, fileName);
 
-    return filePath;
+      Directory.CreateDirectory(_uploadsPath);
+      using (var stream = new FileStream(filePath, FileMode.Create))
+      {
+        await screenshot.CopyToAsync(stream);
+      }
+
+      // Return URL path, not physical path
+      return $"/uploads/{fileName}";
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine($"Error saving screenshot: {ex.Message}");
+      return string.Empty;
+    }
   }
 }

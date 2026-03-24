@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -65,17 +65,9 @@ namespace DataAccessLayer.Migrations
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
                 values: new object[] { "8f155c4b-c7d3-4436-97e0-954adb87930c", "AQAAAAIAAYagAAAAEFMGx2YWHSCyvirY95Qim+xiJmIYvFuDH+krqf9ZIvK6owa+qREQG4Kp/P5qyrtEXQ==", "c49cfb4c-5028-4842-8b9f-73ca1256b5f7" });
 
-            migrationBuilder.InsertData(
-                table: "Forums",
-                columns: new[] { "Id", "DiscussionQuestion", "SubjectId", "Topic" },
-                values: new object[,]
-                {
-                    { new Guid("11bb9624-2c8b-4386-add6-decd914b8a1c"), "What are the best study guides for exam preparation?", new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"), "Best study guides?" },
-                    { new Guid("1982cdb3-0bb0-4231-924b-7e1a792f3102"), "How do we understand Newton’s Laws?", new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"), "Physics Chapter 1" },
-                    { new Guid("5a3f0e81-700b-43e4-80f5-750096a6f391"), "What are common algebra problems students face?", new Guid("3fe2283b-6751-4633-8903-2043997bbf20"), "Difficult problems in Algebra" },
-                    { new Guid("df4a1879-6b87-4f6e-8874-c9b6ba35cf03"), "What are common algebra problems students face?", new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"), "Difficult problems in Algebra" },
-                    { new Guid("f2f8d30c-7b6f-4214-bc48-e5b035646fbc"), "How should I approach exam preparation effectively?", new Guid("b2df6db3-2b38-4c3a-9517-5e3e2b98b741"), "Exam preparation tips" }
-                });
+            // REMOVED Forums seed data - causes FK constraint errors with non-existent SubjectIds:
+            // SubjectId 'b2df6db3-2b38-4c3a-9517-5e3e2b98b741' and '3fe2283b-6751-4633-8903-2043997bbf20' don't exist
+            // Forums can be created through the application UI instead
 
             migrationBuilder.InsertData(
                 table: "Terms",
@@ -104,30 +96,7 @@ namespace DataAccessLayer.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DeleteData(
-                table: "Forums",
-                keyColumn: "Id",
-                keyValue: new Guid("11bb9624-2c8b-4386-add6-decd914b8a1c"));
-
-            migrationBuilder.DeleteData(
-                table: "Forums",
-                keyColumn: "Id",
-                keyValue: new Guid("1982cdb3-0bb0-4231-924b-7e1a792f3102"));
-
-            migrationBuilder.DeleteData(
-                table: "Forums",
-                keyColumn: "Id",
-                keyValue: new Guid("5a3f0e81-700b-43e4-80f5-750096a6f391"));
-
-            migrationBuilder.DeleteData(
-                table: "Forums",
-                keyColumn: "Id",
-                keyValue: new Guid("df4a1879-6b87-4f6e-8874-c9b6ba35cf03"));
-
-            migrationBuilder.DeleteData(
-                table: "Forums",
-                keyColumn: "Id",
-                keyValue: new Guid("f2f8d30c-7b6f-4214-bc48-e5b035646fbc"));
+            // REMOVED Forums DeleteData - no longer inserting Forums in Up()
 
             migrationBuilder.DeleteData(
                 table: "Terms",
@@ -199,9 +168,9 @@ namespace DataAccessLayer.Migrations
                 {
                     { new Guid("029c77ce-4a5d-4c1c-9263-57f69422d915"), 2020 },
                     { new Guid("04690ce2-c802-4268-90cb-4de44e012027"), 2023 },
-                    { new Guid("6096b475-8871-4f68-9d13-8a037aaf0ad2"), 2021 },
+                    { new Guid("6096b475-8871-4f68-9d13-8a037aaf0ad2"), 2022 },
                     { new Guid("8b8a04bc-caa2-47ac-a830-3d47ae4beea2"), 2024 },
-                    { new Guid("a46b629d-e145-4cc2-a770-3a29c81e0770"), 2022 }
+                    { new Guid("a46b629d-e145-4cc2-a770-3a29c81e0770"), 2021 }
                 });
         }
     }

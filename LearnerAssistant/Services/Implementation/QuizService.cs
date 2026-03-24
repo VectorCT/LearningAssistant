@@ -30,16 +30,26 @@ public class QuizService(ApplicationDbContext context) : IQuizService
 
   public async Task<QuizResultDto> SubmitQuizAsync(QuizSubmissionDto submission)
   {
-    var questionIds = submission.Answers.Select(a => a.QuestionId).ToList();
-    var questions = await _context.Questions
+    if (submission.Answers == null || !submission.Answers.Any())
+      return new QuizResultDto { MaxScore = 0, TotalScore = 0, QuestionResults = new List<QuestionResultDto>() };
+
+    var questionIds = submission.Answers.Select(a => a.QuestionId).Distinct().ToList();
+
+    // Load questions and answers in parallel for better performance
+    var questionsTask = _context.Questions
       .AsNoTracking()
       .Where(q => questionIds.Contains(q.Id))
       .ToListAsync();
 
-    var answers = await _context.Answers
+    var answersTask = _context.Answers
       .AsNoTracking()
       .Where(a => questionIds.Contains(a.QuestionId))
       .ToListAsync();
+
+    await Task.WhenAll(questionsTask, answersTask);
+
+    var questions = await questionsTask;
+    var answers = await answersTask;
 
     var result = new QuizResultDto();
     int maxScore = 0;

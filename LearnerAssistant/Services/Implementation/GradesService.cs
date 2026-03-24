@@ -27,6 +27,7 @@ public class GradesService(
 
   public async Task<IReadOnlyList<GradeDto>> GetGradesAsync()
     => await _context.Grades
+      .AsNoTracking()
       .Select(s => new GradeDto
       {
         Id = s.Id,
@@ -35,19 +36,18 @@ public class GradesService(
 
   public async Task<IReadOnlyList<GradeDto>> GetGradeSubjectsAsync(Guid id)
   => await _context.Grades
-    .Include(g => g.GradeSubjects)
-    .ThenInclude(gs => gs.Subject)
+    .AsNoTracking()
     .Where(s => s.Id == id)
-      .Select(s => new GradeDto
-      {
-        Id = s.Id,
-        Name = s.Name,
-        Subjects = s.GradeSubjects
-        .Select(s => new SubjectDto
+    .Select(s => new GradeDto
+    {
+      Id = s.Id,
+      Name = s.Name,
+      Subjects = s.GradeSubjects
+        .Select(gs => new SubjectDto
         {
-          Id = s.Id,
-          Name = s.Subject.Name,
-          PrescribedTextBook = s.Subject.PrescribedTextBook
+          Id = gs.SubjectId,
+          Name = gs.Subject.Name,
+          PrescribedTextBook = gs.Subject.PrescribedTextBook
         }).ToArray()
-      }).ToReadOnlyListAsync();
+    }).ToReadOnlyListAsync();
 }

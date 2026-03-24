@@ -4,6 +4,7 @@ using DataAccessLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260318000023_removeSeed")]
+    partial class removeSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -413,14 +416,13 @@ namespace DataAccessLayer.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<Guid?>("PastPaperId")
+                    b.Property<Guid>("PastPaperId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PastPaperId")
-                        .IsUnique()
-                        .HasFilter("[PastPaperId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("PastMemorandums");
                 });
@@ -453,7 +455,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<Guid>("SubjectId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("YearId")
+                    b.Property<Guid>("YearId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -1102,7 +1104,8 @@ namespace DataAccessLayer.Migrations
                     b.HasOne("DataAccessLayer.Models.PastPaper", "PastPaper")
                         .WithOne("PastMemorandum")
                         .HasForeignKey("DataAccessLayer.Models.PastMemorandum", "PastPaperId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("PastPaper");
                 });
@@ -1117,7 +1120,9 @@ namespace DataAccessLayer.Migrations
 
                     b.HasOne("Year", "Year")
                         .WithMany("PastPapers")
-                        .HasForeignKey("YearId");
+                        .HasForeignKey("YearId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Subject");
 

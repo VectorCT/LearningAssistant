@@ -6,7 +6,6 @@ using Microsoft.OpenApi.Models;
 using Services.Interfaces;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using LearnerAssistant.Data;
 
 const string CorsPolicy = "ALLOWOPTIONS";
 

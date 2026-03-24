@@ -6,8 +6,7 @@ public class Year
   public Guid Id { get; set; }
   public int YearNumber { get; set; }
   public DateTime CreatedAt { get; set; }
-  public DateTime? ModifiedAt { get; set; }
-  public string? CreatedBy { get; set; }
+  // ModifiedAt and CreatedBy removed - not in database schema
   public List<TermYear> TermYears { get; set; } = [];
   public List<PastPaper> PastPapers { get; set; } = [];
   [JsonIgnore]

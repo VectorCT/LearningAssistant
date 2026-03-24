@@ -18,6 +18,14 @@ public class PastMemorandumConfiguration : IEntityTypeConfiguration<PastMemorand
         .HasMaxLength(500)
         .IsRequired();
 
-    // Removed reference to PastPaper navigation property
+    builder
+        .Property(pm => pm.PastPaperId)
+        .IsRequired(false);
+
+    builder
+        .HasOne(pm => pm.PastPaper)
+        .WithOne(p => p.PastMemorandum)
+        .HasForeignKey<PastMemorandum>(pm => pm.PastPaperId)
+        .IsRequired(false);
   }
 }

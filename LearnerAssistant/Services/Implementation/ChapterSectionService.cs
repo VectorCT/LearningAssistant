@@ -11,6 +11,7 @@ namespace LearnerAssistant.Services.Implementation;
 public class ChapterSectionService(ApplicationDbContext context) : IChapterSectionService
 {
   private readonly ApplicationDbContext _context = context;
+  private readonly string _uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
 
   /// <summary>
   /// Creates a new chapter section, handling optional image upload when type is Image.
@@ -24,18 +25,26 @@ public class ChapterSectionService(ApplicationDbContext context) : IChapterSecti
     {
       if (dto.Image != null && dto.Image.Length > 0)
       {
-        var uploadsFolder = Path.Combine("wwwroot", "uploads");
-        Directory.CreateDirectory(uploadsFolder);
-
-        var fileName = Guid.NewGuid() + Path.GetExtension(dto.Image.FileName);
-        var filePath = Path.Combine(uploadsFolder, fileName);
-
-        using (var stream = new FileStream(filePath, FileMode.Create))
+        try
         {
-          await dto.Image.CopyToAsync(stream);
-        }
+          Directory.CreateDirectory(_uploadsPath);
 
-        imageUrl = $"/uploads/{fileName}";
+          var fileName = Guid.NewGuid() + Path.GetExtension(dto.Image.FileName);
+          var filePath = Path.Combine(_uploadsPath, fileName);
+
+          using (var stream = new FileStream(filePath, FileMode.Create))
+          {
+            await dto.Image.CopyToAsync(stream);
+          }
+
+          imageUrl = $"/uploads/{fileName}";
+        }
+        catch (Exception ex)
+        {
+          // Log error but continue - don't fail the entire operation
+          Console.WriteLine($"Error saving image: {ex.Message}");
+          imageUrl = null;
+        }
       }
       // Keep content as-is for captions; imageUrl stores the image path.
     }
@@ -74,18 +83,25 @@ public class ChapterSectionService(ApplicationDbContext context) : IChapterSecti
     {
       if (dto.Image != null && dto.Image.Length > 0)
       {
-        var uploadsFolder = Path.Combine("wwwroot", "uploads");
-        Directory.CreateDirectory(uploadsFolder);
-
-        var fileName = Guid.NewGuid() + Path.GetExtension(dto.Image.FileName);
-        var filePath = Path.Combine(uploadsFolder, fileName);
-
-        using (var stream = new FileStream(filePath, FileMode.Create))
+        try
         {
-          await dto.Image.CopyToAsync(stream);
-        }
+          Directory.CreateDirectory(_uploadsPath);
 
-        section.Image = $"/uploads/{fileName}";
+          var fileName = Guid.NewGuid() + Path.GetExtension(dto.Image.FileName);
+          var filePath = Path.Combine(_uploadsPath, fileName);
+
+          using (var stream = new FileStream(filePath, FileMode.Create))
+          {
+            await dto.Image.CopyToAsync(stream);
+          }
+
+          section.Image = $"/uploads/{fileName}";
+        }
+        catch (Exception ex)
+        {
+          Console.WriteLine($"Error saving image: {ex.Message}");
+          section.Image = dto.ImageUrl;
+        }
       }
       else
       {

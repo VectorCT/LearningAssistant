@@ -21,6 +21,7 @@ public class ApplicationDbContext(
   public DbSet<ChapterSection> ChapterSections { get; set; }
   public DbSet<PastPaper> PastPapers { get; set; }
   public DbSet<PastMemorandum> PastMemorandums { get; set; }
+  public DbSet<PastPaperMemorandum> PastPaperMemorandums { get; set; }
   public DbSet<TextbookFile> TextbookFiles { get; set; }
   public DbSet<AdditionalTextBook> AdditionalTextBooks { get; set; }
   public DbSet<UserReaction> UserReactions { get; set; }
@@ -31,6 +32,7 @@ public class ApplicationDbContext(
   public DbSet<Answer> Answers { get; set; }
   public DbSet<MultipleChoiceAnswer> MultipleChoices { get; set; }
   public DbSet<TrueFalseAnswer> TrueFalseAnswers { get; set; }
+  public DbSet<WrittenAnswer> WrittenAnswers { get; set; }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
@@ -38,8 +40,7 @@ public class ApplicationDbContext(
     modelBuilder.ApplyConfigurationsFromAssembly(
         Assembly.GetExecutingAssembly());
 
-    modelBuilder.Entity<Chapter>().HasData(Seed.ChapterSeed.GetChapters());
-    modelBuilder.Entity<ChapterSection>().HasData(Seed.ChapterSectionSeed.GetChapterSections());
+    // Seed data removed - let crawler populate the database
 
     // Indexes configured per new DB schema
     modelBuilder.Entity<Chapter>()
